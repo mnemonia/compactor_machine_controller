@@ -6,7 +6,7 @@
 #include "SetManualOperationModeCommand.h"
 #include "SetSetupOperationModeCommand.h"
 #include "Button.h"
-#include "PushButton.h"
+#include "DebounceButton.h"
 #include "OperatingModeButton.h"
 
 
@@ -25,8 +25,8 @@ void CommandPanel::_configure() {
   CompactorOpenCommand *c_open_cmd = new CompactorOpenCommand(_machine_behavior);
   CompactorCloseCommand *c_close_cmd = new CompactorCloseCommand(_machine_behavior);
   CompactorStopCommand *c_stop_cmd = new CompactorStopCommand(_machine_behavior);
-  _compactor_open_btn = new PushButton(_io_config->pin_compactor_open(), c_open_cmd, c_stop_cmd);
-  _compactor_close_btn = new PushButton(_io_config->pin_compactor_close(), c_close_cmd, c_stop_cmd);
+  _compactor_open_btn = new DebounceButton(_io_config->pin_compactor_open(), c_open_cmd, c_stop_cmd);
+  _compactor_close_btn = new DebounceButton(_io_config->pin_compactor_close(), c_close_cmd, c_stop_cmd);
 
   SetManualOperationModeCommand *op_manual_cmd = new SetManualOperationModeCommand(_machine_behavior, this);
   SetAutomaticOperationModeCommand *op_automatic_cmd = new SetAutomaticOperationModeCommand(_machine_behavior, this);

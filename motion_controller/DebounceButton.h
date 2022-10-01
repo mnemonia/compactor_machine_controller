@@ -5,18 +5,21 @@
 #include "Button.h"
 #include "Command.h"
 
-class PushButton: public Button {
+class DebounceButton: public Button {
 public:
-	PushButton(int di_pin, Command *down_command, Command *up_command);
+	DebounceButton(int di_pin, Command *down_command, Command *up_command);
 	void check();
   void enable();
   void disable();
 
 private:
   int _di_pin;
-  int _state_last_read;
-  bool _is_enabled;
   Command *_down_command;
   Command *_up_command;
+  int _button_state;
+  int _state_last_read;
+  unsigned long _last_debounce_time;
+  unsigned long _debounce_delay;
+  bool _is_enabled;
 };
 #endif
