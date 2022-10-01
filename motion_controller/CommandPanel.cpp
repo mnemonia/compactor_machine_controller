@@ -10,7 +10,11 @@
 #include "OperatingModeButton.h"
 
 
-CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode): _machine_behavior(machine_behavior), _config(config), _io_config(io_config), _operating_mode(operating_mode)
+CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode):
+  _machine_behavior(machine_behavior),
+  _config(config),
+  _io_config(io_config),
+  _operating_mode(operating_mode)
 {
   _configure();
 }

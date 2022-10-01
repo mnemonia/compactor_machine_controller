@@ -1,10 +1,9 @@
 //#include "Arduino.h”
-#include "Compactor.h"
+#include "Heating.h"
 
 
-Compactor::Compactor(Configuration *config, IoConfiguration *io_config):
+Heating::Heating(int pin_temperature_sensor, int pin_oil_valve, int pin_water_valve, Configuration *config):
  _config(config),
- _io_config(io_config),
  _pid_open(),
  _pid_close() 
 {
@@ -17,21 +16,19 @@ Compactor::Compactor(Configuration *config, IoConfiguration *io_config):
  // _pid_open.limit();
 }
 
-void Compactor::open(){
+void Heating::heat_up(){
 }
 
-void Compactor::close(){
+void Heating::cool_down(){
 }
 
-void Compactor::stamp(){
+void Heating::update(){
+ // analogRead();
 }
 
-void Compactor::update(){
+void Heating::execute(){
 }
 
-void Compactor::execute(){
-}
-
-void Compactor::tick(){
+void Heating::tick(){
 }
 

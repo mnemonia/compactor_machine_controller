@@ -6,24 +6,40 @@
 class IoConfiguration {
 public:
 	IoConfiguration();
-	int pin_compactor_pressure_sensor();
-	int pin_heating_1_top_temperature_sensor();
-	int pin_heating_1_bottom_temperature_sensor();
-	int pin_heating_2_top_temperature_sensor();
-	int pin_heating_2_bottom_temperature_sensor();
-  int pin_compactor_open();
-	int pin_compactor_close();
 	int pin_operating_mode_automatic_switch();
-  int pin_operating_mode_setup_switch();
+    int pin_operating_mode_setup_switch();
+    int pin_compactor_open();
+	int pin_compactor_close();
+	int pin_compactor_pressure_sensor();
+	int pin_heating_upper_upper_temperature_sensor();
+	int pin_heating_upper_lower_temperature_sensor();
+	int pin_heating_lower_upper_temperature_sensor();
+	int pin_heating_lower_lower_temperature_sensor();
+	int pin_heating_upper_upper_oil_valve();
+	int pin_heating_upper_lower_oil_valve();
+	int pin_heating_lower_upper_oil_valve();
+	int pin_heating_lower_lower_oil_valve();
+	int pin_heating_upper_upper_water_valve();
+	int pin_heating_upper_lower_water_valve();
+	int pin_heating_lower_upper_water_valve();
+	int pin_heating_lower_lower_water_valve();
 private:
 	int _pin_compactor_pressure_sensor;
-	int _pin_heating_1_top_temperature_sensor;
-	int _pin_heating_1_bottom_temperature_sensor;
-	int _pin_heating_2_top_temperature_sensor;
-	int _pin_heating_2_bottom_temperature_sensor;
-  int _pin_button_compactor_open;
+    int _pin_button_compactor_open;
 	int _pin_compactor_close;
 	int _pin_operating_mode_automatic_switch;
 	int _pin_operating_mode_setup_switch;
+	int _pin_heating_upper_upper_temperature_sensor;
+	int _pin_heating_upper_lower_temperature_sensor;
+	int _pin_heating_lower_upper_temperature_sensor;
+	int _pin_heating_lower_lower_temperature_sensor;
+	int _pin_heating_upper_upper_oil_valve;
+	int _pin_heating_upper_lower_oil_valve;
+	int _pin_heating_lower_upper_oil_valve;
+	int _pin_heating_lower_lower_oil_valve;
+	int _pin_heating_upper_upper_water_valve;
+	int _pin_heating_upper_lower_water_valve;
+	int _pin_heating_lower_upper_water_valve;
+	int _pin_heating_lower_lower_water_valve;
 };
 #endif
