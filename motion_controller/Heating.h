@@ -11,6 +11,7 @@ public:
 	Heating(int heating_index, int pin_temperature_sensor, int pin_oil_valve, int pin_water_valve, Configuration *config);
 	void heat_up();
 	void cool_down();
+  void stop();
 
   void update();
   void execute();
@@ -22,9 +23,13 @@ private:
   int _pin_oil_valve;
   int _pin_water_valve;
   Configuration *_config;
-  PIDController _pid_open;
-  PIDController _pid_close;
+  PIDController _pid_heat_up;
+  PIDController _pid_cool_down;
   int _current_temperature_measurement_value;
   int _current_temperature_nominal_value;
+  int _current_cooling_temperature_nominal_value;
+  int _next_heat_up_temperature_measurement_value;
+  int _next_cool_down_temperature_measurement_value;
+
 };
 #endif
