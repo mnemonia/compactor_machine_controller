@@ -8,7 +8,7 @@
 
 class Heating: public Executable {
 public:
-	Heating(int pin_temperature_sensor, int pin_oil_valve, int pin_water_valve, Configuration *config);
+	Heating(int heating_index, int pin_temperature_sensor, int pin_oil_valve, int pin_water_valve, Configuration *config);
 	void heat_up();
 	void cool_down();
 
@@ -17,10 +17,14 @@ public:
   void tick();
 
 private:
-	//int _closing_pressure_ai_pin;
-  //int _stamp_position_end_switch_di_pin;
+  int _heating_index;
+  int _pin_temperature_sensor;
+  int _pin_oil_valve;
+  int _pin_water_valve;
   Configuration *_config;
   PIDController _pid_open;
   PIDController _pid_close;
+  int _current_temperature_measurement_value;
+  int _current_temperature_nominal_value;
 };
 #endif
