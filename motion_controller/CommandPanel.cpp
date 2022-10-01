@@ -4,6 +4,7 @@
 #include "CompactorCloseCommand.h"
 #include "SetAutomaticOperationModeCommand.h"
 #include "SetManualOperationModeCommand.h"
+#include "SetSetupOperationModeCommand.h"
 #include "Button.h"
 #include "PushButton.h"
 #include "OperatingModeButton.h"
@@ -17,6 +18,8 @@ CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Configuration *con
 void CommandPanel::check() {
   _compactor_open_btn->check();
   _compactor_close_btn->check();
+  _operating_mode_setup_btn->check();
+  _operating_mode_automatic_btn->check();
 }
 
 void CommandPanel::_configure() {
@@ -28,15 +31,33 @@ void CommandPanel::_configure() {
 
   SetManualOperationModeCommand *op_manual_cmd = new SetManualOperationModeCommand(_machine_behavior, this);
   SetAutomaticOperationModeCommand *op_automatic_cmd = new SetAutomaticOperationModeCommand(_machine_behavior, this);
-  _operating_mode_btn = new OperatingModeButton(_io_config->pin_operating_mode_switch(), op_manual_cmd, op_automatic_cmd);
+  _operating_mode_automatic_btn = new OperatingModeButton(_io_config->pin_operating_mode_switch(), op_manual_cmd, op_automatic_cmd);
+
+  op_manual_cmd = new SetManualOperationModeCommand(_machine_behavior, this);
+  SetSetupOperationModeCommand *op_setup_cmd = new SetSetupOperationModeCommand(_machine_behavior, this);
+  _operating_mode_setup_btn = new OperatingModeButton(_io_config->pin_operating_mode_switch(), op_setup_cmd, op_manual_cmd);
+}
+
+void CommandPanel::set_operating_mode_setup() {
+  _operating_mode_setup_btn->enable();
+
+  _operating_mode_automatic_btn->disable();
+  _compactor_open_btn->disable();
+  _compactor_close_btn->disable();
 }
 
 void CommandPanel::set_operating_mode_manual() {
+  _operating_mode_setup_btn->enable();
+  _operating_mode_automatic_btn->enable();
+
   _compactor_open_btn->enable();
   _compactor_close_btn->enable();
 }
 
 void CommandPanel::set_operating_mode_automatic() {
+  _operating_mode_setup_btn->enable();
+  _operating_mode_automatic_btn->enable();
+
   _compactor_open_btn->disable();
   _compactor_close_btn->disable();
 }

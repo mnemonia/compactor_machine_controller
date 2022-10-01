@@ -13,6 +13,7 @@ class CommandPanel {
 public:
 	CommandPanel(MachineBehavior *machine_behavior, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode);
   void check();
+  void set_operating_mode_setup();
   void set_operating_mode_manual();
   void set_operating_mode_automatic();
 private:
@@ -22,7 +23,8 @@ private:
   OperatingMode *_operating_mode;
   Button *_compactor_open_btn;
   Button *_compactor_close_btn;
-  OperatingModeButton *_operating_mode_btn;
+  OperatingModeButton *_operating_mode_automatic_btn;
+  OperatingModeButton *_operating_mode_setup_btn;
 	void _configure();
 };
 #endif

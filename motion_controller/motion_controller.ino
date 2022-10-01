@@ -29,8 +29,8 @@ void loop() {
   emergency_stop->check();
   command_panel->check();
 
-  compactor->configure();
-  compactor->execute();
+  //compactor->configure();
+  //compactor->execute();
   // emergency_stop->check();
   delay(25);
 }
