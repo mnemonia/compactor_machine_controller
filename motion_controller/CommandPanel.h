@@ -23,8 +23,7 @@ private:
   OperatingMode *_operating_mode;
   Button *_compactor_open_btn;
   Button *_compactor_close_btn;
-  OperatingModeButton *_operating_mode_automatic_btn;
-  OperatingModeButton *_operating_mode_setup_btn;
+  OperatingModeButton *_operating_mode_btn;
 	void _configure();
 };
 #endif
