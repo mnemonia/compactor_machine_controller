@@ -51,10 +51,6 @@ void Heating::update(){
   _current_temperature_measurement_value = analogRead(_pin_temperature_sensor);
   int new_temperature_nominal_value = _config->get_heating_nominal_temperature_analog_value(_heating_index);
   if (new_temperature_nominal_value != _current_temperature_nominal_value) {
-    /*if (_heating_index == 1) {
-     Serial.println(_current_temperature_nominal_value);
-     Serial.println(new_temperature_nominal_value);
-    }*/
     _current_temperature_nominal_value = new_temperature_nominal_value;
    // _pid_heat_up.setpoint(new_temperature_nominal_value);
   }
@@ -65,19 +61,12 @@ void Heating::update(){
   }
   _next_heat_up_temperature_measurement_value = _pid_heat_up.compute(_current_temperature_measurement_value);
   _next_cool_down_temperature_measurement_value = _pid_cool_down.compute(_current_temperature_measurement_value);
-
 }
 
 void Heating::execute(){
 }
 
 void Heating::tick(){
-  if (_heating_index == 1) {
-    Serial.print("Heating::tick ");
-    Serial.println(_current_state);
-    Serial.println(_current_temperature_measurement_value);
-    Serial.println(_current_temperature_nominal_value);
-  }
   switch(_current_state) {
     default:
     case 0:
