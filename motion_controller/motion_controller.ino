@@ -6,6 +6,7 @@
 #include "CommandPanel.h"
 #include "OperatingMode.h"
 #include "Heating.h"
+#include "Lamp.h"
 
 IoConfiguration *io_config;
 Configuration *config;
@@ -14,6 +15,9 @@ Heating *heating_upper_upper;
 Heating *heating_upper_lower;
 Heating *heating_lower_upper;
 Heating *heating_lower_lower;
+Lamp *lamp_orange;
+Lamp *lamp_blue;
+Lamp *lamp_green;
 MachineBehavior *machine_behavior;
 EmergencyStop *emergency_stop;
 CommandPanel *command_panel;
@@ -30,6 +34,10 @@ void setup() {
   heating_upper_lower = new Heating(2, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_lower_upper = new Heating(3, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_lower_lower = new Heating(4, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
+
+  lamp_orange = new Lamp(1, io_config->pin_lamp_orange());
+  lamp_blue = new Lamp(2, io_config->pin_lamp_blue());
+  lamp_green = new Lamp(3, io_config->pin_lamp_green());
 
   machine_behavior = new MachineBehavior();
   emergency_stop = new EmergencyStop(machine_behavior, io_config);

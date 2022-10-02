@@ -23,6 +23,9 @@ public:
 	int pin_heating_upper_lower_water_valve();
 	int pin_heating_lower_upper_water_valve();
 	int pin_heating_lower_lower_water_valve();
+	int pin_lamp_orange();
+	int pin_lamp_blue();
+	int pin_lamp_green();
 private:
 	int _pin_compactor_pressure_sensor;
     int _pin_button_compactor_open;
@@ -41,5 +44,8 @@ private:
 	int _pin_heating_upper_lower_water_valve;
 	int _pin_heating_lower_upper_water_valve;
 	int _pin_heating_lower_lower_water_valve;
+	int _pin_lamp_orange;
+	int _pin_lamp_blue;
+	int _pin_lamp_green;
 };
 #endif

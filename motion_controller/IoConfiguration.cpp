@@ -19,7 +19,9 @@ IoConfiguration::IoConfiguration() {
   _pin_heating_upper_lower_water_valve = 0;
   _pin_heating_lower_upper_water_valve = 0;
   _pin_heating_lower_lower_water_valve = 0;
-
+  _pin_lamp_orange = 0;
+  _pin_lamp_blue = 0;
+  _pin_lamp_green = 0;
 
   pinMode(_pin_operating_mode_setup_switch, INPUT);
   pinMode(_pin_operating_mode_automatic_switch, INPUT);
@@ -89,4 +91,13 @@ int IoConfiguration::pin_heating_lower_upper_water_valve() {
 }
 int IoConfiguration::pin_heating_lower_lower_water_valve() {
   return _pin_heating_lower_lower_water_valve;
+}
+int IoConfiguration::pin_lamp_orange(){
+  return _pin_lamp_orange;
+}
+int IoConfiguration::pin_lamp_blue(){
+  return _pin_lamp_blue;
+}
+int IoConfiguration::pin_lamp_green(){
+  return _pin_lamp_green;
 }
