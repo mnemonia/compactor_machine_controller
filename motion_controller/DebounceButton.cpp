@@ -1,7 +1,7 @@
 #include "DebounceButton.h"
 
 
-DebounceButton::DebounceButton(int di_pin, Command *down_command, Command *up_command): 
+DebounceButton::DebounceButton(int di_pin, Command *down_command, Command *up_command, DebugService *debug_service): 
   _di_pin(di_pin),
   _down_command(down_command),
   _up_command(up_command),
@@ -9,7 +9,8 @@ DebounceButton::DebounceButton(int di_pin, Command *down_command, Command *up_co
   _state_last_read(LOW),
   _last_debounce_time(0),
   _debounce_delay(50),
-  _is_enabled(false)
+  _is_enabled(false),
+  _debug_service(debug_service)
 {
   pinMode(_di_pin, INPUT);
 }
@@ -41,9 +42,11 @@ void DebounceButton::check() {
       _button_state = pin_state;
 
       if (_button_state == HIGH) {
+        _debug_service->info("button down");
         _up_command->cancel();
         _down_command->execute();
       } else {
+        _debug_service->info("button up");
         _down_command->cancel();
         _up_command->execute();
       }

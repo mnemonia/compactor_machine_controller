@@ -7,6 +7,7 @@
 #include "OperatingMode.h"
 #include "Heating.h"
 #include "Lamp.h"
+#include "DebugService.h"
 
 IoConfiguration *io_config;
 Configuration *config;
@@ -24,25 +25,28 @@ CommandPanel *command_panel;
 OperatingMode *operating_mode;
 unsigned long _current_slow_tick = 0;
 unsigned long _max_slow_tick = 100;
+DebugService *debug_service;
+
 
 void setup() {
   io_config = new IoConfiguration();
   config = new Configuration();
   compactor = new Compactor(config, io_config);
+  debug_service = new DebugService();
   
   heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_upper_lower = new Heating(2, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_lower_upper = new Heating(3, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_lower_lower = new Heating(4, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
 
-  lamp_orange = new Lamp(1, io_config->pin_lamp_orange());
-  lamp_blue = new Lamp(2, io_config->pin_lamp_blue());
-  lamp_green = new Lamp(3, io_config->pin_lamp_green());
+  lamp_orange = new Lamp(1, io_config->pin_lamp_orange(), debug_service);
+  lamp_blue = new Lamp(2, io_config->pin_lamp_blue(), debug_service);
+  lamp_green = new Lamp(3, io_config->pin_lamp_green(), debug_service);
 
   machine_behavior = new MachineBehavior();
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
   operating_mode = new OperatingMode();
-  command_panel = new CommandPanel(machine_behavior, config, io_config, operating_mode, lamp_orange, lamp_blue, lamp_green);
+  command_panel = new CommandPanel(machine_behavior, config, io_config, operating_mode, lamp_orange, lamp_blue, lamp_green, debug_service);
 
 }
 
