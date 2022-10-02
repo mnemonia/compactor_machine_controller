@@ -8,6 +8,8 @@
 #include "Heating.h"
 #include "Lamp.h"
 #include "DebugService.h"
+#include "CommunicationService.h"
+
 
 IoConfiguration *io_config;
 Configuration *config;
@@ -26,13 +28,14 @@ OperatingMode *operating_mode;
 unsigned long _current_slow_tick = 0;
 unsigned long _max_slow_tick = 100;
 DebugService *debug_service;
-
+CommunicationService *communication_service;
 
 void setup() {
   io_config = new IoConfiguration();
   config = new Configuration();
   compactor = new Compactor(config, io_config);
   debug_service = new DebugService();
+  communication_service = new CommunicationService(config);
   
   heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_upper_lower = new Heating(2, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
@@ -51,6 +54,7 @@ void setup() {
 }
 
 void update() {
+  communication_service->update();
   compactor->update();
   heating_upper_upper->update();
   heating_upper_lower->update();
@@ -90,4 +94,13 @@ void loop() {
   tick();
   slow_tick();
   delay(25);
+}
+
+/*
+  SerialEvent occurs whenever a new data comes in the hardware serial RX. This
+  routine is run between each time loop() runs, so using delay inside loop can
+  delay response. Multiple bytes of data may be available.
+*/
+void serialEvent() {
+  communication_service->update();
 }
