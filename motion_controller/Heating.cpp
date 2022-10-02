@@ -19,15 +19,9 @@ Heating::Heating(int heating_index, int pin_temperature_sensor, int pin_oil_valv
 {
   pinMode(_pin_oil_valve, OUTPUT);
   pinMode(_pin_water_valve, OUTPUT);
-  //_closing_pressure_ai_pin = closing_pressure_ai_pin;
-  //_end_switch_input_pin = stamp_position_end_switch_di_pin;
-  _config->get_stamp_duration();
- // _pid_open.setpoint();
- // _pid_open.limit();
 }
 
 void Heating::heat_up(){
-  Serial.println("Heating::heat_up");
   _current_state = 1;
   _pid_heat_up.begin();
   _pid_heat_up.setpoint(_current_temperature_nominal_value);
