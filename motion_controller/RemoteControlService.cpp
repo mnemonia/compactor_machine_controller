@@ -31,6 +31,42 @@ void RemoteControlService::trigger(int command_id){
     case 1013:
       _machine->lamp_green()->turn_off();
       break;    
+    case 1201:
+      _machine->heating_upper_upper()->stop();
+      break;    
+    case 1202:
+      _machine->heating_upper_lower()->stop();
+      break;    
+    case 1203:
+      _machine->heating_lower_upper()->stop();
+      break;    
+    case 1204:
+      _machine->heating_lower_lower()->stop();
+      break;    
+    case 1211:
+      _machine->heating_upper_upper()->heat_up();
+      break;    
+    case 1212:
+      _machine->heating_upper_lower()->heat_up();
+      break;    
+    case 1213:
+      _machine->heating_lower_upper()->heat_up();
+      break;    
+    case 1214:
+      _machine->heating_lower_lower()->heat_up();
+      break;    
+    case 1221:
+      _machine->heating_upper_upper()->cool_down();
+      break;    
+    case 1222:
+      _machine->heating_upper_lower()->cool_down();
+      break;    
+    case 1223:
+      _machine->heating_lower_upper()->cool_down();
+      break;    
+    case 1224:
+      _machine->heating_lower_lower()->cool_down();
+      break;    
     case 200:
       // _machine->execute_command(command_id);
       break;

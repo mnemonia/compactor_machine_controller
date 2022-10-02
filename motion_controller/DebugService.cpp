@@ -11,11 +11,13 @@ DebugService::DebugService(): _is_enabled(true) {
 }
 
 void DebugService::info(String msg){
-  _emit(msg);
+  // _q.push(&msg);
 }
 
-void DebugService::_emit(String msg){
+void DebugService::emit(){
   if (_is_enabled) {
-    Serial.println(msg);
+		//String msg;
+		//_q.pop(&msg);
+		//Serial.println(msg);
   }
 }

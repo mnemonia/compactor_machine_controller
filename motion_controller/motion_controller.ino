@@ -51,17 +51,17 @@ void setup() {
   lamp_green = new Lamp(3, io_config->pin_lamp_green(), debug_service);
   debug_service->info("2");
 
-  machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green);
-  remote_control_service = new RemoteControlService(config, machine);
-  communication_service = new CommunicationService(config, remote_control_service);
+  heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
+  heating_upper_lower = new Heating(2, io_config->pin_heating_upper_lower_temperature_sensor(), io_config->pin_heating_upper_lower_oil_valve(), io_config->pin_heating_upper_lower_water_valve(), config);
+  heating_lower_upper = new Heating(3, io_config->pin_heating_lower_upper_temperature_sensor(), io_config->pin_heating_lower_upper_oil_valve(), io_config->pin_heating_lower_upper_water_valve(), config);
+  heating_lower_lower = new Heating(4, io_config->pin_heating_lower_lower_temperature_sensor(), io_config->pin_heating_lower_lower_oil_valve(), io_config->pin_heating_lower_lower_water_valve(), config);
   debug_service->info("3");
 
-  
-  heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
-  heating_upper_lower = new Heating(2, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
-  heating_lower_upper = new Heating(3, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
-  heating_lower_lower = new Heating(4, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
+  machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower);
+  remote_control_service = new RemoteControlService(config, machine);
+  communication_service = new CommunicationService(config, remote_control_service);
   debug_service->info("4");
+
 
 
   machine_behavior = new MachineBehavior();
@@ -113,6 +113,7 @@ void slow_tick() {
 
 // the loop function runs over and over again forever
 void loop() {
+  debug_service->emit();
   update();
   check();
   tick();

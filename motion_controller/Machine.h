@@ -5,17 +5,23 @@
 #include "Compactor.h"
 #include "Lamp.h"
 #include "Command.h"
+#include "Heating.h"
 
 
 class Machine {
 public:
-	Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green);
+	Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower);
   Compactor* compactor();
   Lamp* lamp_orange();
   Lamp* lamp_blue();
   Lamp* lamp_green();
   void add_command(Command *command);
   void execute_command(String command_id);
+
+  Heating *heating_upper_upper();
+  Heating *heating_upper_lower();
+  Heating *heating_lower_upper();
+  Heating *heating_lower_lower();
 /*
   void tick();  
   void stop();
@@ -32,6 +38,10 @@ private:
   Lamp *_lamp_orange;
   Lamp *_lamp_blue;
   Lamp *_lamp_green;
+  Heating *_heating_upper_upper;
+  Heating *_heating_upper_lower;
+  Heating *_heating_lower_upper;
+  Heating *_heating_lower_lower;
   Command *_commands[100];
 };
 #endif

@@ -27,6 +27,7 @@ Heating::Heating(int heating_index, int pin_temperature_sensor, int pin_oil_valv
 }
 
 void Heating::heat_up(){
+  Serial.println("Heating::heat_up");
   _current_state = 1;
   _pid_heat_up.begin();
   _pid_heat_up.setpoint(_current_temperature_nominal_value);
@@ -71,13 +72,18 @@ void Heating::execute(){
 }
 
 void Heating::tick(){
+  if (_heating_index == 1) {
+    Serial.print("Heating::tick ");
+    Serial.println(_current_state);
+    Serial.println(_current_temperature_measurement_value);
+    Serial.println(_current_temperature_nominal_value);
+  }
   switch(_current_state) {
     default:
     case 0:
       _pause_all();
       break;
     case 1:
-      //Serial.println(_current_temperature_nominal_value);
       if (! _in_temperature_tolerance(_current_temperature_measurement_value, _current_temperature_nominal_value)) {
         _continue_heating();
       } else {

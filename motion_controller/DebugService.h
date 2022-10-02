@@ -7,9 +7,8 @@ class DebugService {
 public:
 	DebugService();
 	void info(String msg);
-
+  void emit();
 private:
   bool _is_enabled;
-  void _emit(String msg);
 };
 #endif
