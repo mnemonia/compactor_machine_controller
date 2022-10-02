@@ -37,6 +37,7 @@ void setup() {
   config = new Configuration();
   compactor = new Compactor(config, io_config);
   debug_service = new DebugService();
+  debug_service->info("Kessler Compactor Motion Controller");
   communication_service = new CommunicationService(config);
 
   machine = new Machine(compactor);

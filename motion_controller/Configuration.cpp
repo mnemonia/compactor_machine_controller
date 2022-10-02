@@ -16,6 +16,20 @@ Configuration::Configuration():
 
 }
 
+void Configuration::apply(String key, int value) {
+	if (key == "P100") {
+		_stamp_duration_in_s = value;
+	} else if (key == "P501.1") {
+		_heating_upper_upper_nominal_temperature_in_celsius = value;
+	} else if (key == "P501.2") {
+		_heating_upper_lower_nominal_temperature_in_celsius = value;
+	} else if (key == "P501.2") {
+		_heating_lower_upper_nominal_temperature_in_celsius = value;
+	} else if (key == "P501.2") {
+		_heating_lower_lower_nominal_temperature_in_celsius = value;
+	}
+}
+
 int Configuration::get_stamp_duration(){
   return _stamp_duration_in_s;
 }

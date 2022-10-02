@@ -4,7 +4,7 @@
 
 CommunicationService::CommunicationService(Configuration *config): _config(config), _is_enabled(true) {
   if (_is_enabled) {
-    Serial.begin(9600);
+    // Serial.begin(9600);
   }
 }
 
@@ -29,6 +29,15 @@ void CommunicationService::update(){
     if (inChar == '\n') {
       is_complete = true;
       Serial.println("CommunicationService received data from serial: " + input_string);
+      if (input_string.startsWith("P")) {
+        // Is a parameter. Let's apply it.
+        int index = input_string.indexOf('=');
+        String param_id = input_string.substring(0,index);
+        int value = input_string.substring(index + 1).toInt();
+        Serial.println(param_id);
+        Serial.println(value);        
+        _config->apply(param_id, value);
+      }
     }
   }
 }
