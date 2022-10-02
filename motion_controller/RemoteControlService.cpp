@@ -8,8 +8,16 @@ RemoteControlService::RemoteControlService(Configuration *config, Machine *machi
 void RemoteControlService::trigger(String command_id){
   if (!_is_enabled) { return; }
   if (command_id.startsWith("C100.1")) {
+    _machine->lamp_orange()->turn_on();
+  } else if (command_id.startsWith("C100.2")) {
     _machine->lamp_blue()->turn_on();
+  } else if (command_id.startsWith("C100.3")) {
+    _machine->lamp_green()->turn_on();
   } else if (command_id.startsWith("C101.1")) {
+    _machine->lamp_orange()->turn_off();
+  } else if (command_id.startsWith("C101.2")) {
     _machine->lamp_blue()->turn_off();
+  } else if (command_id.startsWith("C101.3")) {
+    _machine->lamp_green()->turn_off();
   }
 }

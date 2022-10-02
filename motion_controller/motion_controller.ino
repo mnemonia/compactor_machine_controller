@@ -70,6 +70,7 @@ void update() {
   heating_upper_lower->update();
   heating_lower_upper->update();
   heating_lower_lower->update();
+  debug_service->info("update");
 }
 
 void check() {
@@ -86,6 +87,7 @@ void _run_slow_tick() {
   heating_upper_lower->tick();
   heating_lower_upper->tick();
   heating_lower_lower->tick();
+  debug_service->info("slow tick");
 }
 
 void slow_tick() {
@@ -104,6 +106,7 @@ void loop() {
   tick();
   slow_tick();
   delay(25);
+  // debug_service->info("loop");
 }
 
 /*
