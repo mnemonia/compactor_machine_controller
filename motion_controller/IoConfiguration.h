@@ -9,8 +9,10 @@ public:
 	IoConfiguration();
 	int pin_operating_mode_automatic_switch();
     int pin_operating_mode_setup_switch();
-    int pin_compactor_open();
-	int pin_compactor_close();
+    int pin_compactor_open_button();
+	int pin_compactor_close_button();
+    int pin_compactor_open_valve();
+	int pin_compactor_close_valve();
     int pin_compactor_endposition_open_sensor();
 	int pin_compactor_endposition_close_sensor();
 	int pin_compactor_endposition_stamp_sensor();
@@ -32,8 +34,10 @@ public:
 	int pin_lamp_green();
 private:
 	int _pin_compactor_pressure_sensor;
-    int _pin_button_compactor_open;
-	int _pin_compactor_close;
+    int _pin_compactor_open_button;
+	int _pin_compactor_close_button;
+    int _pin_compactor_open_valve;
+	int _pin_compactor_close_valve;
 	int _pin_compactor_endposition_open_sensor;
 	int _pin_compactor_endposition_close_sensor;
 	int _pin_compactor_endposition_stamp_sensor;

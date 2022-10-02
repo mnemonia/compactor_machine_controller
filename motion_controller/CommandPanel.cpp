@@ -32,8 +32,8 @@ void CommandPanel::_configure() {
   CompactorOpenCommand *c_open_cmd = new CompactorOpenCommand(_machine->compactor());
   CompactorCloseCommand *c_close_cmd = new CompactorCloseCommand(_machine->compactor());
   CompactorStopCommand *c_stop_cmd = new CompactorStopCommand(_machine->compactor());
-  _compactor_open_btn = new DebounceButton(_io_config->pin_compactor_open(), "compactor.open", c_open_cmd, c_stop_cmd, _debug_service);
-  _compactor_close_btn = new DebounceButton(_io_config->pin_compactor_close(), "compactor.close", c_close_cmd, c_stop_cmd, _debug_service);
+  _compactor_open_btn = new DebounceButton(_io_config->pin_compactor_open_button(), "compactor.open", c_open_cmd, c_stop_cmd, _debug_service);
+  _compactor_close_btn = new DebounceButton(_io_config->pin_compactor_close_button(), "compactor.close", c_close_cmd, c_stop_cmd, _debug_service);
 
   SetManualOperationModeCommand *op_manual_cmd = new SetManualOperationModeCommand(_machine_behavior, this);
   SetAutomaticOperationModeCommand *op_automatic_cmd = new SetAutomaticOperationModeCommand(_machine_behavior, this);

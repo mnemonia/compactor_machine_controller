@@ -9,8 +9,8 @@ Compactor::Compactor(Configuration *config, IoConfiguration *io_config):
  _pid_close(),
  _current_state(0)
 {
-  pinMode(_io_config->pin_compactor_close(), OUTPUT);
-  pinMode(_io_config->pin_compactor_open(), OUTPUT);
+  pinMode(_io_config->pin_compactor_close_valve(), OUTPUT);
+  pinMode(_io_config->pin_compactor_open_valve(), OUTPUT);
   pinMode(_io_config->pin_compactor_endposition_stamp_sensor(), INPUT);
   pinMode(_io_config->pin_compactor_endposition_open_sensor(), INPUT);
   pinMode(_io_config->pin_compactor_endposition_close_sensor(), INPUT);
@@ -45,8 +45,6 @@ void Compactor::execute(){
 }
 
 void Compactor::tick(){
-  Serial.print("Compactor::tick ");
-  Serial.println(_current_state);
   switch(_current_state) {
     default:
     case 0:
@@ -77,18 +75,18 @@ void Compactor::tick(){
 }
 
 void Compactor::_continue_open() {
-  digitalWrite(_io_config->pin_compactor_open(), HIGH);
-  digitalWrite(_io_config->pin_compactor_close(), LOW);
+  digitalWrite(_io_config->pin_compactor_open_valve(), HIGH);
+  digitalWrite(_io_config->pin_compactor_close_valve(), LOW);
 }
 
 void Compactor::_continue_close() {
-  digitalWrite(_io_config->pin_compactor_open(), LOW);
-  digitalWrite(_io_config->pin_compactor_close(), HIGH);
+  digitalWrite(_io_config->pin_compactor_open_valve(), LOW);
+  digitalWrite(_io_config->pin_compactor_close_valve(), HIGH);
 }
 
 void Compactor::_continue_stop() {
-  digitalWrite(_io_config->pin_compactor_open(), LOW);
-  digitalWrite(_io_config->pin_compactor_close(), LOW);
+  digitalWrite(_io_config->pin_compactor_open_valve(), LOW);
+  digitalWrite(_io_config->pin_compactor_close_valve(), LOW);
 }
 
 bool Compactor::_in_endposition_close() {
@@ -100,5 +98,6 @@ bool Compactor::_in_endposition_open() {
 }
 
 bool Compactor::_in_endposition_stamp() {
-  return digitalRead(_io_config->pin_compactor_endposition_stamp_sensor()) == HIGH;
+  //return digitalRead(_io_config->pin_compactor_endposition_stamp_sensor()) == HIGH;
+  return false;
 }
