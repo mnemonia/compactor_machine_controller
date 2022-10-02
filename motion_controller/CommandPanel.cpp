@@ -34,15 +34,15 @@ void CommandPanel::_configure() {
   CompactorOpenCommand *c_open_cmd = new CompactorOpenCommand(_machine_behavior);
   CompactorCloseCommand *c_close_cmd = new CompactorCloseCommand(_machine_behavior);
   CompactorStopCommand *c_stop_cmd = new CompactorStopCommand(_machine_behavior);
-  _compactor_open_btn = new DebounceButton(_io_config->pin_compactor_open(), c_open_cmd, c_stop_cmd, _debug_service);
-  _compactor_close_btn = new DebounceButton(_io_config->pin_compactor_close(), c_close_cmd, c_stop_cmd, _debug_service);
+  _compactor_open_btn = new DebounceButton(_io_config->pin_compactor_open(), "compactor.open", c_open_cmd, c_stop_cmd, _debug_service);
+  _compactor_close_btn = new DebounceButton(_io_config->pin_compactor_close(), "compactor.close", c_close_cmd, c_stop_cmd, _debug_service);
 
   SetManualOperationModeCommand *op_manual_cmd = new SetManualOperationModeCommand(_machine_behavior, this);
   SetAutomaticOperationModeCommand *op_automatic_cmd = new SetAutomaticOperationModeCommand(_machine_behavior, this);
   SetSetupOperationModeCommand *op_setup_cmd = new SetSetupOperationModeCommand(_machine_behavior, this);
 
-  _operating_mode_setup_btn = new DebounceButton(_io_config->pin_operating_mode_setup_switch(), op_setup_cmd, op_manual_cmd, _debug_service);
-  _operating_mode_automatic_btn = new DebounceButton(_io_config->pin_operating_mode_automatic_switch(), op_automatic_cmd, op_manual_cmd, _debug_service);
+  _operating_mode_setup_btn = new DebounceButton(_io_config->pin_operating_mode_setup_switch(), "operatingmode.setup", op_setup_cmd, op_manual_cmd, _debug_service);
+  _operating_mode_automatic_btn = new DebounceButton(_io_config->pin_operating_mode_automatic_switch(), "operatingmode.automatic", op_automatic_cmd, op_manual_cmd, _debug_service);
 
   /* _operating_mode_btn = new OperatingModeButton(
                               _io_config->pin_operating_mode_setup_switch(),

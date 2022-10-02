@@ -9,13 +9,14 @@
 
 class DebounceButton: public Button {
 public:
-	DebounceButton(int di_pin, Command *down_command, Command *up_command, DebugService *debug_service);
+	DebounceButton(int di_pin, String name, Command *down_command, Command *up_command, DebugService *debug_service);
 	void check();
   void enable();
   void disable();
 
 private:
   int _di_pin;
+  String _name;
   Command *_down_command;
   Command *_up_command;
   DebugService *_debug_service;  
