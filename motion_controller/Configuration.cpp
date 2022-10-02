@@ -17,6 +17,8 @@ Configuration::Configuration():
 }
 
 void Configuration::apply(String key, int value) {
+	Serial.print("Configuration apply " + key + " ");
+	Serial.println(value);
 	if (key == "P100") {
 		_stamp_duration_in_s = value;
 	} else if (key == "P501.1") {

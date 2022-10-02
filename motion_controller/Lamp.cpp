@@ -14,13 +14,13 @@ Lamp::Lamp(int lamp_index, int pin_lamp, DebugService *debug_service):
 void Lamp::turn_on(){
   _current_state = 1;
   digitalWrite(_pin_lamp, HIGH);
-  _debug_service->info("lamp " + String(_lamp_index) + " on");
+  //_debug_service->info("lamp " + String(_lamp_index) + " on");
 }
 
 void Lamp::turn_off(){
   _current_state = 0;
   digitalWrite(_pin_lamp, LOW);
-  _debug_service->info("lamp " + String(_lamp_index) + " off");
+  //_debug_service->info("lamp " + String(_lamp_index) + " off");
 }
 
 void Lamp::update(){

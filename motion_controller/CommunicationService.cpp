@@ -2,7 +2,7 @@
 #include "CommunicationService.h"
 
 
-CommunicationService::CommunicationService(Configuration *config): _config(config), _is_enabled(true) {
+CommunicationService::CommunicationService(Configuration *config, RemoteControlService *remote_control_service): _config(config), _remote_control_service(remote_control_service), _is_enabled(true) {
   if (_is_enabled) {
     // Serial.begin(9600);
   }
@@ -37,6 +37,10 @@ void CommunicationService::update(){
         Serial.println(param_id);
         Serial.println(value);        
         _config->apply(param_id, value);
+      }
+      if (input_string.startsWith("C")) {
+          Serial.println("Command: "+input_string);
+          _remote_control_service->trigger(input_string);
       }
     }
   }

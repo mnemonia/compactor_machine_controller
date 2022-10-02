@@ -3,12 +3,16 @@
 
 #include "Arduino.h"
 #include "Compactor.h"
+#include "Lamp.h"
 
 
 class Machine {
 public:
-	Machine(Compactor* compactor);
+	Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green);
   Compactor* compactor();
+  Lamp* lamp_orange();
+  Lamp* lamp_blue();
+  Lamp* lamp_green();
 /*
   void tick();  
   void stop();
@@ -22,5 +26,8 @@ public:
 */
 private:
 	Compactor *_compactor;
+  Lamp *_lamp_orange;
+  Lamp *_lamp_blue;
+  Lamp *_lamp_green;
 };
 #endif
