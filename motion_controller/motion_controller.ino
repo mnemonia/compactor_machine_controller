@@ -42,7 +42,7 @@ void setup() {
   machine_behavior = new MachineBehavior();
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
   operating_mode = new OperatingMode();
-  command_panel = new CommandPanel(machine_behavior, config, io_config, operating_mode);
+  command_panel = new CommandPanel(machine_behavior, config, io_config, operating_mode, lamp_orange, lamp_blue, lamp_green);
 
 }
 
@@ -63,7 +63,7 @@ void tick() {
   compactor->tick();
 }
 
-void run_slow_tick() {
+void _run_slow_tick() {
   heating_upper_upper->tick();
   heating_upper_lower->tick();
   heating_lower_upper->tick();
@@ -73,7 +73,7 @@ void run_slow_tick() {
 void slow_tick() {
   if (_current_slow_tick >= _max_slow_tick) {
     _current_slow_tick = 0;
-    run_slow_tick();
+    _run_slow_tick();
   } else {
     _current_slow_tick++;
   }
