@@ -15,7 +15,7 @@ IoConfiguration::IoConfiguration() {
   _pin_heating_upper_lower_oil_valve = 14;
   _pin_heating_lower_upper_oil_valve = 15;
   _pin_heating_lower_lower_oil_valve = 16;
-  _pin_heating_upper_upper_water_valve = 13;
+  _pin_heating_upper_upper_water_valve = 17;
   _pin_heating_upper_lower_water_valve = 18;
   _pin_heating_lower_upper_water_valve = 19;
   _pin_heating_lower_lower_water_valve = 20;
