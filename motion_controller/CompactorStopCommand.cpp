@@ -1,9 +1,11 @@
 #include "CompactorStopCommand.h"
 
-CompactorStopCommand::CompactorStopCommand(MachineBehavior *machine_behavior): _machine_behavior(machine_behavior)
+CompactorStopCommand::CompactorStopCommand(Compactor *compactor): _compactor(compactor)
 {
 }
 
-void CompactorStopCommand::execute() {}
-void CompactorStopCommand::cancel() {}
+void CompactorStopCommand::execute() {
+    _compactor->stop();
+}
+void CompactorStopCommand::cancel() {;}
 

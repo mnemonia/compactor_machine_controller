@@ -1,9 +1,13 @@
 #include "CompactorOpenCommand.h"
 
-CompactorOpenCommand::CompactorOpenCommand(MachineBehavior *machine_behavior): _machine_behavior(machine_behavior)
+CompactorOpenCommand::CompactorOpenCommand(Compactor *compactor): _compactor(compactor)
 {
 }
 
-void CompactorOpenCommand::execute() {}
-void CompactorOpenCommand::cancel() {}
+void CompactorOpenCommand::execute() {
+    _compactor->open();
+}
+void CompactorOpenCommand::cancel() {
+    _compactor->stop();
+}
 

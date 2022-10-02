@@ -10,8 +10,9 @@
 #include "OperatingModeButton.h"
 
 
-CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, DebugService *debug_service):
+CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Machine *machine, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, DebugService *debug_service):
   _machine_behavior(machine_behavior),
+  _machine(machine),
   _config(config),
   _io_config(io_config),
   _operating_mode(operating_mode),
@@ -31,9 +32,9 @@ void CommandPanel::check() {
 }
 
 void CommandPanel::_configure() {
-  CompactorOpenCommand *c_open_cmd = new CompactorOpenCommand(_machine_behavior);
-  CompactorCloseCommand *c_close_cmd = new CompactorCloseCommand(_machine_behavior);
-  CompactorStopCommand *c_stop_cmd = new CompactorStopCommand(_machine_behavior);
+  CompactorOpenCommand *c_open_cmd = new CompactorOpenCommand(_machine->compactor());
+  CompactorCloseCommand *c_close_cmd = new CompactorCloseCommand(_machine->compactor());
+  CompactorStopCommand *c_stop_cmd = new CompactorStopCommand(_machine->compactor());
   _compactor_open_btn = new DebounceButton(_io_config->pin_compactor_open(), "compactor.open", c_open_cmd, c_stop_cmd, _debug_service);
   _compactor_close_btn = new DebounceButton(_io_config->pin_compactor_close(), "compactor.close", c_close_cmd, c_stop_cmd, _debug_service);
 

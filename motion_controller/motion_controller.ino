@@ -9,6 +9,7 @@
 #include "Lamp.h"
 #include "DebugService.h"
 #include "CommunicationService.h"
+#include "Machine.h"
 
 
 IoConfiguration *io_config;
@@ -29,6 +30,7 @@ unsigned long _current_slow_tick = 0;
 unsigned long _max_slow_tick = 100;
 DebugService *debug_service;
 CommunicationService *communication_service;
+Machine *machine;
 
 void setup() {
   io_config = new IoConfiguration();
@@ -36,6 +38,8 @@ void setup() {
   compactor = new Compactor(config, io_config);
   debug_service = new DebugService();
   communication_service = new CommunicationService(config);
+
+  machine = new Machine(compactor);
   
   heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_upper_lower = new Heating(2, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
@@ -49,7 +53,7 @@ void setup() {
   machine_behavior = new MachineBehavior();
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
   operating_mode = new OperatingMode();
-  command_panel = new CommandPanel(machine_behavior, config, io_config, operating_mode, lamp_orange, lamp_blue, lamp_green, debug_service);
+  command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, lamp_orange, lamp_blue, lamp_green, debug_service);
 
 }
 

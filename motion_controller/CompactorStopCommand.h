@@ -1,16 +1,16 @@
 #ifndef CompactorStopCommand_h
 #define CompactorStopCommand_h
 
-#include "MachineBehavior.h"
+#include "Compactor.h"
 #include "Command.h"
 
 class CompactorStopCommand: public Command {
 public:
-	CompactorStopCommand(MachineBehavior *machine_behavior);
+	CompactorStopCommand(Compactor *compactor);
 	void execute();
 	void cancel();
 
 private:
-  MachineBehavior *_machine_behavior;
+  Compactor *_compactor;
 };
 #endif

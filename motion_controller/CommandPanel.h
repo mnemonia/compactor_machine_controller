@@ -10,16 +10,18 @@
 #include "OperatingMode.h"
 #include "Lamp.h"
 #include "DebugService.h"
+#include "Machine.h"
 
 class CommandPanel {
 public:
-	CommandPanel(MachineBehavior *machine_behavior, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, DebugService *debug_service);
+	CommandPanel(MachineBehavior *machine_behavior, Machine *machine, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, DebugService *debug_service);
   void check();
   void set_operating_mode_setup();
   void set_operating_mode_manual();
   void set_operating_mode_automatic();
 private:
   MachineBehavior *_machine_behavior;
+  Machine *_machine;
   Configuration *_config;
   IoConfiguration *_io_config;
   OperatingMode *_operating_mode;

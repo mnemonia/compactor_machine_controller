@@ -1,9 +1,13 @@
 #include "CompactorCloseCommand.h"
 
-CompactorCloseCommand::CompactorCloseCommand(MachineBehavior *machine_behavior): _machine_behavior(machine_behavior)
+CompactorCloseCommand::CompactorCloseCommand(Compactor *compactor): _compactor(compactor)
 {
 }
 
-void CompactorCloseCommand::execute() {}
-void CompactorCloseCommand::cancel() {}
+void CompactorCloseCommand::execute() {
+    _compactor->close();
+}
+void CompactorCloseCommand::cancel() {
+    _compactor->stop();
+}
 
