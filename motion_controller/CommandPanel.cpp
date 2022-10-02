@@ -10,15 +10,12 @@
 #include "OperatingModeButton.h"
 
 
-CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Machine *machine, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, DebugService *debug_service):
+CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Machine *machine, Configuration *config, IoConfiguration *io_config, OperatingMode *operating_mode, DebugService *debug_service):
   _machine_behavior(machine_behavior),
   _machine(machine),
   _config(config),
   _io_config(io_config),
   _operating_mode(operating_mode),
-  _lamp_orange(lamp_orange), 
-  _lamp_blue(lamp_blue),
-  _lamp_green(lamp_green),
   _debug_service(debug_service)
 {
   _configure();
@@ -55,27 +52,27 @@ void CommandPanel::_configure() {
 }
 
 void CommandPanel::set_operating_mode_setup() {
-  _lamp_orange->turn_on();
-  _lamp_blue->turn_off();
-  _lamp_green->turn_off();
+  _machine->lamp_orange()->turn_on();
+  _machine->lamp_blue()->turn_off();
+  _machine->lamp_green()->turn_off();
   _compactor_open_btn->disable();
   _compactor_close_btn->disable();
   _operating_mode_automatic_btn->disable();
 }
 
 void CommandPanel::set_operating_mode_manual() {
-  _lamp_orange->turn_off();
-  _lamp_blue->turn_on();
-  _lamp_green->turn_off();
+  _machine->lamp_orange()->turn_off();
+  _machine->lamp_blue()->turn_on();
+  _machine->lamp_green()->turn_off();
   _compactor_open_btn->enable();
   _compactor_close_btn->enable();
   _operating_mode_automatic_btn->enable();
 }
 
 void CommandPanel::set_operating_mode_automatic() {
-  _lamp_orange->turn_off();
-  _lamp_blue->turn_off();
-  _lamp_green->turn_on();
+  _machine->lamp_orange()->turn_off();
+  _machine->lamp_blue()->turn_off();
+  _machine->lamp_green()->turn_on();
   _compactor_open_btn->disable();
   _compactor_close_btn->disable();
   _operating_mode_automatic_btn->enable();

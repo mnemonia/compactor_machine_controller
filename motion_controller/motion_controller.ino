@@ -59,7 +59,7 @@ void setup() {
   machine_behavior = new MachineBehavior();
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
   operating_mode = new OperatingMode();
-  command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, lamp_orange, lamp_blue, lamp_green, debug_service);
+  command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, debug_service);
 
 }
 
