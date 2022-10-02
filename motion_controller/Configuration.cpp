@@ -16,19 +16,23 @@ Configuration::Configuration():
 
 }
 
-void Configuration::apply(String key, int value) {
-	Serial.print("Configuration apply " + key + " ");
-	Serial.println(value);
-	if (key == "P100") {
-		_stamp_duration_in_s = value;
-	} else if (key == "P501.1") {
-		_heating_upper_upper_nominal_temperature_in_celsius = value;
-	} else if (key == "P501.2") {
-		_heating_upper_lower_nominal_temperature_in_celsius = value;
-	} else if (key == "P501.2") {
-		_heating_lower_upper_nominal_temperature_in_celsius = value;
-	} else if (key == "P501.2") {
-		_heating_lower_lower_nominal_temperature_in_celsius = value;
+void Configuration::apply(int key, int value) {
+	switch(key) {
+		case 100:
+			_stamp_duration_in_s = value;
+			break;
+		case 5011:
+			_heating_upper_upper_nominal_temperature_in_celsius = value;
+			break;
+		case 5012:
+			_heating_upper_lower_nominal_temperature_in_celsius = value;
+			break;
+		case 5013:
+			_heating_lower_upper_nominal_temperature_in_celsius = value;
+			break;
+		case 5014:
+			_heating_lower_lower_nominal_temperature_in_celsius = value;
+			break;
 	}
 }
 

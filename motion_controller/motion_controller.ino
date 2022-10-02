@@ -94,7 +94,8 @@ void tick() {
 }
 
 void _run_slow_tick() {
- // debug_service->info("slow tick");
+  debug_service->info("slow tick");
+  Serial.println(config->get_heating_nominal_temperature_analog_value(1));
   heating_upper_upper->tick();
   heating_upper_lower->tick();
   heating_lower_upper->tick();

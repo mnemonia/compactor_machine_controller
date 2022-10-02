@@ -50,16 +50,21 @@ void Heating::update(){
   _current_temperature_measurement_value = analogRead(_pin_temperature_sensor);
   int new_temperature_nominal_value = _config->get_heating_nominal_temperature_analog_value(_heating_index);
   if (new_temperature_nominal_value != _current_temperature_nominal_value) {
+    /*if (_heating_index == 1) {
+     Serial.println(_current_temperature_nominal_value);
+     Serial.println(new_temperature_nominal_value);
+    }*/
     _current_temperature_nominal_value = new_temperature_nominal_value;
-    _pid_heat_up.setpoint(new_temperature_nominal_value);
+   // _pid_heat_up.setpoint(new_temperature_nominal_value);
   }
   int new_cooling_temperature_nominal_value = _config->get_heating_nominal_cooling_temperature_analog_value(_heating_index);
   if (new_cooling_temperature_nominal_value != _current_cooling_temperature_nominal_value) {
     _current_cooling_temperature_nominal_value = new_cooling_temperature_nominal_value;
-    _pid_cool_down.setpoint(new_cooling_temperature_nominal_value);
+    // _pid_cool_down.setpoint(new_cooling_temperature_nominal_value);
   }
   _next_heat_up_temperature_measurement_value = _pid_heat_up.compute(_current_temperature_measurement_value);
   _next_cool_down_temperature_measurement_value = _pid_cool_down.compute(_current_temperature_measurement_value);
+
 }
 
 void Heating::execute(){
@@ -72,6 +77,7 @@ void Heating::tick(){
       _pause_all();
       break;
     case 1:
+      //Serial.println(_current_temperature_nominal_value);
       if (! _in_temperature_tolerance(_current_temperature_measurement_value, _current_temperature_nominal_value)) {
         _continue_heating();
       } else {

@@ -18,7 +18,6 @@ CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Machine *machine, 
   _operating_mode(operating_mode),
   _debug_service(debug_service)
 {
-  _debug_service->info("4.1.1");
   _configure();
 }
 
@@ -26,7 +25,7 @@ void CommandPanel::check() {
   _compactor_open_btn->check();
   _compactor_close_btn->check();
   _operating_mode_setup_btn->check();
-  // _operating_mode_automatic_btn->check();
+  _operating_mode_automatic_btn->check();
 }
 
 void CommandPanel::_configure() {

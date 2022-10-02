@@ -6,7 +6,7 @@
 class Configuration {
 public:
 	Configuration();
-	void apply(String key, int value);
+	void apply(int key, int value);
 	int get_stamp_duration();
 	void set_stamp_duration(int stamp_duration_in_s);
 	int get_heating_nominal_temperature_analog_value(int heating_index);

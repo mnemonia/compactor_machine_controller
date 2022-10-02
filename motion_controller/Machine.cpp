@@ -25,10 +25,10 @@ Lamp* Machine::lamp_green(){
 }
 
 void Machine::add_command(Command *command) {
-    _commands[0] = command;
+   // _commands[0] = command;
 }
 
 void Machine::execute_command(String command_id) {
-    _commands[0]->execute();
+   // _commands[0]->execute();
 }
 

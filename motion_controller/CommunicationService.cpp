@@ -18,6 +18,10 @@ void CommunicationService::update(){
   if (!_is_enabled) { return; }
   
   bool is_complete = false;
+  int index;
+  int param_id;
+  int value;
+  int command_id;
   String input_string = "";
   while (Serial.available()) {
     // get the new byte:
@@ -33,14 +37,13 @@ void CommunicationService::update(){
       // Serial.println("CommunicationService received data from serial: " + input_string);
       if (input_string.startsWith("P")) {
         // Is a parameter. Let's apply it.
-        //Serial.println("Param: "+input_string);
-        int index = input_string.indexOf('=');
-        String param_id = input_string.substring(0,index);
-        int value = input_string.substring(index + 1).toInt();
+        index = input_string.indexOf('=');
+        param_id = input_string.substring(1, index).toInt();
+        value = input_string.substring(index + 1).toInt();
         _config->apply(param_id, value);
       }
       if (input_string.startsWith("C")) {
-        int command_id = input_string.substring(1).toInt();
+        command_id = input_string.substring(1).toInt();
         _remote_control_service->trigger(command_id);
       }
     }
