@@ -3,7 +3,7 @@
 
 IoConfiguration::IoConfiguration() {
   _pin_compactor_pressure_sensor = 3;
-  _pin_button_compactor_open = 4;
+  _pin_button_compactor_open = 13;
   _pin_compactor_close = 5;
   _pin_operating_mode_automatic_switch = 6;
   _pin_operating_mode_setup_switch = 7;
@@ -56,6 +56,10 @@ int IoConfiguration::pin_compactor_endposition_open_sensor() {
 
 int IoConfiguration::pin_compactor_endposition_close_sensor() {
   return _pin_compactor_endposition_close_sensor;
+}
+
+int IoConfiguration::pin_compactor_endposition_stamp_sensor() {
+  return _pin_compactor_endposition_stamp_sensor;
 }
 
 int IoConfiguration::pin_operating_mode_setup_switch(){

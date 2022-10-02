@@ -9,14 +9,11 @@ Compactor::Compactor(Configuration *config, IoConfiguration *io_config):
  _pid_close(),
  _current_state(0)
 {
-  pinMode(_io_config->pin_compactor_close(), INPUT);
-  pinMode(_io_config->pin_compactor_open(), INPUT);
-  //pinMode(stamp_position_end_switch_di_pin, INPUT);
-  //_closing_pressure_ai_pin = closing_pressure_ai_pin;
-  //_end_switch_input_pin = stamp_position_end_switch_di_pin;
-  // _config->get_stamp_duration();
- // _pid_open.setpoint();
- // _pid_open.limit();
+  pinMode(_io_config->pin_compactor_close(), OUTPUT);
+  pinMode(_io_config->pin_compactor_open(), OUTPUT);
+  pinMode(_io_config->pin_compactor_endposition_stamp_sensor(), INPUT);
+  pinMode(_io_config->pin_compactor_endposition_open_sensor(), INPUT);
+  pinMode(_io_config->pin_compactor_endposition_close_sensor(), INPUT);
 }
 
 void Compactor::stop(){
@@ -48,6 +45,8 @@ void Compactor::execute(){
 }
 
 void Compactor::tick(){
+  Serial.print("Compactor::tick ");
+  Serial.println(_current_state);
   switch(_current_state) {
     default:
     case 0:
@@ -62,6 +61,13 @@ void Compactor::tick(){
       break;
     case 2:
       if (! _in_endposition_close()) {
+        _continue_close();
+      } else {
+        _continue_stop();
+      }
+      break;
+    case 3:
+      if (! _in_endposition_stamp()) {
         _continue_close();
       } else {
         _continue_stop();
@@ -86,9 +92,13 @@ void Compactor::_continue_stop() {
 }
 
 bool Compactor::_in_endposition_close() {
-  return digitalRead(-_io_config->pin_compactor_endposition_close_sensor()) == HIGH;
+  return digitalRead(_io_config->pin_compactor_endposition_close_sensor()) == HIGH;
 }
 
 bool Compactor::_in_endposition_open() {
-  return digitalRead(-_io_config->pin_compactor_endposition_open_sensor()) == HIGH;
+  return digitalRead(_io_config->pin_compactor_endposition_open_sensor()) == HIGH;
+}
+
+bool Compactor::_in_endposition_stamp() {
+  return digitalRead(_io_config->pin_compactor_endposition_stamp_sensor()) == HIGH;
 }

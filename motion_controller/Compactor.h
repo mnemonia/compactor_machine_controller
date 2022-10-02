@@ -14,6 +14,7 @@ public:
 	void open();
 	void close();
   void stamp();
+
   void update();
   void execute();
   void tick();
@@ -29,7 +30,9 @@ private:
   void _continue_open();
   void _continue_close();
   void _continue_stop();
+  void _continue_stamp();
   bool _in_endposition_open();
   bool _in_endposition_close();
+  bool _in_endposition_stamp();
 };
 #endif

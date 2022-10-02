@@ -64,6 +64,18 @@ void RemoteControlService::trigger(int command_id){
     case 1224:
       _machine->heating_lower_lower()->cool_down();
       break;    
+    case 1300:
+      _machine->compactor()->stop();
+      break;    
+    case 1301:
+      _machine->compactor()->open();
+      break;    
+    case 1302:
+      _machine->compactor()->close();
+      break;    
+    case 1303:
+      _machine->compactor()->stamp();
+      break;    
     case 200:
       // _machine->execute_command(command_id);
       break;

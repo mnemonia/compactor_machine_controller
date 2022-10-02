@@ -13,6 +13,7 @@ public:
 	int pin_compactor_close();
     int pin_compactor_endposition_open_sensor();
 	int pin_compactor_endposition_close_sensor();
+	int pin_compactor_endposition_stamp_sensor();
 	int pin_compactor_pressure_sensor();
 	int pin_heating_upper_upper_temperature_sensor();
 	int pin_heating_upper_lower_temperature_sensor();
@@ -35,6 +36,7 @@ private:
 	int _pin_compactor_close;
 	int _pin_compactor_endposition_open_sensor;
 	int _pin_compactor_endposition_close_sensor;
+	int _pin_compactor_endposition_stamp_sensor;
 	int _pin_operating_mode_automatic_switch;
 	int _pin_operating_mode_setup_switch;
 	int _pin_heating_upper_upper_temperature_sensor;
