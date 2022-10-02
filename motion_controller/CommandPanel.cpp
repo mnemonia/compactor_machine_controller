@@ -54,30 +54,30 @@ void CommandPanel::_configure() {
 }
 
 void CommandPanel::set_operating_mode_setup() {
-  // _machine->lamp_orange()->turn_on();
-  // _machine->lamp_blue()->turn_off();
-  // _machine->lamp_green()->turn_off();
-  // _compactor_open_btn->disable();
-  // _compactor_close_btn->disable();
-  // _operating_mode_automatic_btn->disable();
+  _machine->lamp_orange()->turn_on();
+  _machine->lamp_blue()->turn_off();
+  _machine->lamp_green()->turn_off();
+  _compactor_open_btn->disable();
+  _compactor_close_btn->disable();
+  _operating_mode_automatic_btn->disable();
 }
 
 void CommandPanel::set_operating_mode_manual() {
-  // _machine->lamp_orange()->turn_off();
-  // _machine->lamp_blue()->turn_on();
-  // _machine->lamp_green()->turn_off();
-  // _compactor_open_btn->enable();
-  // _compactor_close_btn->enable();
-  // _operating_mode_automatic_btn->enable();
+  _machine->lamp_orange()->turn_off();
+  _machine->lamp_blue()->turn_on();
+  _machine->lamp_green()->turn_off();
+  _compactor_open_btn->enable();
+  _compactor_close_btn->enable();
+  _operating_mode_automatic_btn->enable();
 }
 
 void CommandPanel::set_operating_mode_automatic() {
-  // _machine->lamp_orange()->turn_off();
-  // _machine->lamp_blue()->turn_off();
-  // _machine->lamp_green()->turn_on();
-  // _compactor_open_btn->disable();
-  // _compactor_close_btn->disable();
-  // _operating_mode_automatic_btn->enable();
+  _machine->lamp_orange()->turn_off();
+  _machine->lamp_blue()->turn_off();
+  _machine->lamp_green()->turn_on();
+  _compactor_open_btn->disable();
+  _compactor_close_btn->disable();
+  _operating_mode_automatic_btn->enable();
 }
 
 
