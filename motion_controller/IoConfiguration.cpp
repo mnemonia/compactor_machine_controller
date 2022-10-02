@@ -22,12 +22,16 @@ IoConfiguration::IoConfiguration() {
   _pin_lamp_orange = 20;
   _pin_lamp_blue = 21;
   _pin_lamp_green = 13;
+  _pin_compactor_endposition_close_sensor = 23;
+  _pin_compactor_endposition_open_sensor = 24;
 
   pinMode(_pin_operating_mode_setup_switch, INPUT);
   pinMode(_pin_operating_mode_automatic_switch, INPUT);
   pinMode(_pin_button_compactor_open, INPUT);
   pinMode(_pin_compactor_close, INPUT);
   pinMode(_pin_compactor_pressure_sensor, INPUT);
+  pinMode(_pin_compactor_endposition_close_sensor, INPUT);
+  pinMode(_pin_compactor_endposition_open_sensor, INPUT);
   pinMode(_pin_heating_upper_upper_temperature_sensor, INPUT);
   pinMode(_pin_heating_upper_lower_temperature_sensor, INPUT);
   pinMode(_pin_heating_lower_upper_temperature_sensor, INPUT);
@@ -44,6 +48,14 @@ int IoConfiguration::pin_compactor_open(){
 
 int IoConfiguration::pin_compactor_close(){
   return _pin_compactor_close;
+}
+
+int IoConfiguration::pin_compactor_endposition_open_sensor() {
+  return _pin_compactor_endposition_open_sensor;
+}
+
+int IoConfiguration::pin_compactor_endposition_close_sensor() {
+  return _pin_compactor_endposition_close_sensor;
 }
 
 int IoConfiguration::pin_operating_mode_setup_switch(){

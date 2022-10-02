@@ -10,6 +10,7 @@
 class Compactor: public Executable {
 public:
 	Compactor(Configuration *config, IoConfiguration *io_config);
+	void stop();
 	void open();
 	void close();
   void stamp();
@@ -24,5 +25,11 @@ private:
   IoConfiguration *_io_config;
   PIDController _pid_open;
   PIDController _pid_close;
+  int _current_state;
+  void _continue_open();
+  void _continue_close();
+  void _continue_stop();
+  bool _in_endposition_open();
+  bool _in_endposition_close();
 };
 #endif
