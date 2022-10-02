@@ -2,26 +2,26 @@
 #include "IoConfiguration.h"
 
 IoConfiguration::IoConfiguration() {
-  _pin_compactor_pressure_sensor = 0;
-  _pin_button_compactor_open = 0;
-  _pin_compactor_close = 0;
-  _pin_operating_mode_automatic_switch = 0;
-  _pin_operating_mode_setup_switch = 0;
-  _pin_heating_upper_upper_temperature_sensor = 0;
-  _pin_heating_upper_lower_temperature_sensor = 0;
-  _pin_heating_lower_upper_temperature_sensor = 0;
-  _pin_heating_lower_lower_temperature_sensor = 0;
-  _pin_heating_upper_upper_oil_valve = 0;
-  _pin_heating_upper_lower_oil_valve = 0;
-  _pin_heating_lower_upper_oil_valve = 0;
-  _pin_heating_lower_lower_oil_valve = 0;
-  _pin_heating_upper_upper_water_valve = 0;
-  _pin_heating_upper_lower_water_valve = 0;
-  _pin_heating_lower_upper_water_valve = 0;
-  _pin_heating_lower_lower_water_valve = 0;
-  _pin_lamp_orange = 0;
-  _pin_lamp_blue = 0;
-  _pin_lamp_green = 0;
+  _pin_compactor_pressure_sensor = 3;
+  _pin_button_compactor_open = 4;
+  _pin_compactor_close = 5;
+  _pin_operating_mode_automatic_switch = 6;
+  _pin_operating_mode_setup_switch = 7;
+  _pin_heating_upper_upper_temperature_sensor = 8;
+  _pin_heating_upper_lower_temperature_sensor = 9;
+  _pin_heating_lower_upper_temperature_sensor = 10;
+  _pin_heating_lower_lower_temperature_sensor = 11;
+  _pin_heating_upper_upper_oil_valve = 12;
+  _pin_heating_upper_lower_oil_valve = 22;
+  _pin_heating_lower_upper_oil_valve = 14;
+  _pin_heating_lower_lower_oil_valve = 15;
+  _pin_heating_upper_upper_water_valve = 16;
+  _pin_heating_upper_lower_water_valve = 17;
+  _pin_heating_lower_upper_water_valve = 18;
+  _pin_heating_lower_lower_water_valve = 19;
+  _pin_lamp_orange = 20;
+  _pin_lamp_blue = 21;
+  _pin_lamp_green = 13;
 
   pinMode(_pin_operating_mode_setup_switch, INPUT);
   pinMode(_pin_operating_mode_automatic_switch, INPUT);
@@ -32,7 +32,6 @@ IoConfiguration::IoConfiguration() {
   pinMode(_pin_heating_upper_lower_temperature_sensor, INPUT);
   pinMode(_pin_heating_lower_upper_temperature_sensor, INPUT);
   pinMode(_pin_heating_lower_lower_temperature_sensor, INPUT);
-
 }
 
 int IoConfiguration::pin_compactor_pressure_sensor(){
