@@ -18,6 +18,7 @@ public:
   void tick();
 
 private:
+  int _current_state;
   int _heating_index;
   int _pin_temperature_sensor;
   int _pin_oil_valve;
@@ -30,6 +31,10 @@ private:
   int _current_cooling_temperature_nominal_value;
   int _next_heat_up_temperature_measurement_value;
   int _next_cool_down_temperature_measurement_value;
+  bool _in_temperature_tolerance(int actual_value, int nominal_value);
+  void _pause_all();
+  void _continue_heating();
+  void _continue_cooling();
 
 };
 #endif
