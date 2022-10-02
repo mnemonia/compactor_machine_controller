@@ -9,7 +9,7 @@
 class RemoteControlService {
 public:
 	RemoteControlService(Configuration *config, Machine *machine);
-  void trigger(String command_id);
+  void trigger(int command_id);
 
 private:
   Configuration *_config;

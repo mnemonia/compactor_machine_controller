@@ -5,19 +5,35 @@
 RemoteControlService::RemoteControlService(Configuration *config, Machine *machine): _config(config), _machine(machine), _is_enabled(true) {
 }
 
-void RemoteControlService::trigger(String command_id){
+void RemoteControlService::trigger(int command_id){
   if (!_is_enabled) { return; }
-  if (command_id.startsWith("C100.1")) {
-    _machine->lamp_orange()->turn_on();
-  } else if (command_id.startsWith("C100.2")) {
-    _machine->lamp_blue()->turn_on();
-  } else if (command_id.startsWith("C100.3")) {
-    _machine->lamp_green()->turn_on();
-  } else if (command_id.startsWith("C101.1")) {
-    _machine->lamp_orange()->turn_off();
-  } else if (command_id.startsWith("C101.2")) {
-    _machine->lamp_blue()->turn_off();
-  } else if (command_id.startsWith("C101.3")) {
-    _machine->lamp_green()->turn_off();
+  //_machine->lamp_blue()->turn_on();
+  Serial.print("[");
+  Serial.print(command_id);
+  Serial.println("]");
+  //Serial.println(command_id.startsWith("C1"));
+  switch(command_id) {
+    case 1001:
+      _machine->lamp_orange()->turn_on();
+      break;
+    case 1002:
+      _machine->lamp_blue()->turn_on();
+      break;
+    case 1003:
+      _machine->lamp_green()->turn_on();
+      break;
+    case 1011:
+      _machine->lamp_orange()->turn_off();
+      break;
+    case 1012:
+      _machine->lamp_blue()->turn_off();
+      break;
+    case 1013:
+      _machine->lamp_green()->turn_off();
+      break;    
+    case 200:
+      // _machine->execute_command(command_id);
+      break;
   }
+
 }

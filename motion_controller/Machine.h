@@ -4,6 +4,7 @@
 #include "Arduino.h"
 #include "Compactor.h"
 #include "Lamp.h"
+#include "Command.h"
 
 
 class Machine {
@@ -13,6 +14,8 @@ public:
   Lamp* lamp_orange();
   Lamp* lamp_blue();
   Lamp* lamp_green();
+  void add_command(Command *command);
+  void execute_command(String command_id);
 /*
   void tick();  
   void stop();
@@ -29,5 +32,6 @@ private:
   Lamp *_lamp_orange;
   Lamp *_lamp_blue;
   Lamp *_lamp_green;
+  Command *_commands[100];
 };
 #endif
