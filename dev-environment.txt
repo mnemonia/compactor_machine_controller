@@ -1,2 +1,6 @@
-
+install python
 py -m pip install Django
+
+install nodejs
+npm install npm@latest -g
+npm install -g @ionic/cli

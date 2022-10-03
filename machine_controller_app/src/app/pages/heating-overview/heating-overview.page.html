@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Heizungen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+  <ion-item *ngFor="let param of params">
+    <ion-label>{{param.label}}</ion-label>
+    <ion-input slot="end" class="input-field" type="number" inputmode="numeric" max="999" [(ngModel)]="param.value"></ion-input>
+  </ion-item>
+  <ion-button expand="full">
+    Ok
+  </ion-button>
+</ion-list>
+</ion-content>
