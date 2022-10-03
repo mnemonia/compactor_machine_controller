@@ -17,20 +17,23 @@ Configuration::Configuration():
 }
 
 void Configuration::apply(int key, int value) {
+	Serial.print(key);
+	Serial.print("=");
+	Serial.println(value);
 	switch(key) {
 		case 100:
 			_stamp_duration_in_s = value;
 			break;
-		case 5011:
+		case 511:
 			_heating_upper_upper_nominal_temperature_in_celsius = value;
 			break;
-		case 5012:
+		case 512:
 			_heating_upper_lower_nominal_temperature_in_celsius = value;
 			break;
-		case 5013:
+		case 513:
 			_heating_lower_upper_nominal_temperature_in_celsius = value;
 			break;
-		case 5014:
+		case 514:
 			_heating_lower_lower_nominal_temperature_in_celsius = value;
 			break;
 	}

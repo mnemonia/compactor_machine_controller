@@ -38,38 +38,35 @@ void setup() {
   Serial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
-  }    
+  }
+  Serial.setTimeout(15);
+  Serial.println("Kessler Compactor Motion Controller");
+  Serial.flush();
 
   io_config = new IoConfiguration();
   config = new Configuration();
   compactor = new Compactor(config, io_config);
   debug_service = new DebugService();
-  debug_service->info("Kessler Compactor Motion Controller");
 
   lamp_orange = new Lamp(1, io_config->pin_lamp_orange(), debug_service);
   lamp_blue = new Lamp(2, io_config->pin_lamp_blue(), debug_service);
   lamp_green = new Lamp(3, io_config->pin_lamp_green(), debug_service);
-  debug_service->info("2");
 
   heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_upper_lower = new Heating(2, io_config->pin_heating_upper_lower_temperature_sensor(), io_config->pin_heating_upper_lower_oil_valve(), io_config->pin_heating_upper_lower_water_valve(), config);
   heating_lower_upper = new Heating(3, io_config->pin_heating_lower_upper_temperature_sensor(), io_config->pin_heating_lower_upper_oil_valve(), io_config->pin_heating_lower_upper_water_valve(), config);
   heating_lower_lower = new Heating(4, io_config->pin_heating_lower_lower_temperature_sensor(), io_config->pin_heating_lower_lower_oil_valve(), io_config->pin_heating_lower_lower_water_valve(), config);
-  debug_service->info("3");
 
   machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower);
   remote_control_service = new RemoteControlService(config, machine);
   communication_service = new CommunicationService(config, remote_control_service);
-  debug_service->info("4");
-
-
 
   machine_behavior = new MachineBehavior();
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
   operating_mode = new OperatingMode();
-  debug_service->info("4.1");
+
   command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, debug_service);
-  debug_service->info("5");
+
   //debug_service->info("ready");
   //lamp_blue->turn_on();
 }
@@ -91,11 +88,12 @@ void check() {
 
 void tick() {
   compactor->tick();
+  Serial.print("heating_nominal_temperature_analog_value_1 is ");
+  Serial.println(config->get_heating_nominal_temperature_analog_value(1));
 }
 
 void _run_slow_tick() {
-  debug_service->info("slow tick");
-  Serial.println(config->get_heating_nominal_temperature_analog_value(1));
+  // debug_service->info("slow tick");
   heating_upper_upper->tick();
   heating_upper_lower->tick();
   heating_lower_upper->tick();
