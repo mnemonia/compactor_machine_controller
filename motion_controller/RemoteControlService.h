@@ -10,6 +10,7 @@ class RemoteControlService {
 public:
 	RemoteControlService(Configuration *config, Machine *machine);
   void trigger(int command_id);
+  void writeParamsToSerial();
 
 private:
   Configuration *_config;

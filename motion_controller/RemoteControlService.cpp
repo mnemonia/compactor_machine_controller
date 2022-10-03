@@ -87,3 +87,14 @@ void RemoteControlService::trigger(int command_id){
       break;
   }
 }
+
+void RemoteControlService::writeParamsToSerial() {
+  Serial.print("511=");
+  Serial.print(_config->get_heating_nominal_temperature_analog_value(1));
+  Serial.print(";512=");
+  Serial.print(_config->get_heating_nominal_temperature_analog_value(2));
+  Serial.print(";513=");
+  Serial.print(_config->get_heating_nominal_temperature_analog_value(3));
+  Serial.print(";514=");
+  Serial.println(_config->get_heating_nominal_temperature_analog_value(4));
+}

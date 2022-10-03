@@ -115,7 +115,8 @@ void _run_slow_tick() {
   heating_lower_upper->tick();
   heating_lower_lower->tick();
  // Serial.print("heating_nominal_temperature_analog_value_1 is ");
-  Serial.println(config->get_heating_nominal_temperature_analog_value(1));
+  //Serial.println(config->get_heating_nominal_temperature_analog_value(1));
+  remote_control_service->writeParamsToSerial();
   //Serial.flush();
 }
 
