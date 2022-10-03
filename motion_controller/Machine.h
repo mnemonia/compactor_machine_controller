@@ -6,11 +6,12 @@
 #include "Lamp.h"
 #include "Command.h"
 #include "Heating.h"
+#include "HydraulicAggregate.h"
 
 
 class Machine {
 public:
-	Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower);
+	Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower, HydraulicAggregate *aggregate);
   Compactor* compactor();
   Lamp* lamp_orange();
   Lamp* lamp_blue();
@@ -22,6 +23,8 @@ public:
   Heating *heating_upper_lower();
   Heating *heating_lower_upper();
   Heating *heating_lower_lower();
+
+  HydraulicAggregate *aggregate();
 /*
   void tick();  
   void stop();
@@ -42,6 +45,7 @@ private:
   Heating *_heating_upper_lower;
   Heating *_heating_lower_upper;
   Heating *_heating_lower_lower;
+  HydraulicAggregate *_aggregate;
   Command *_commands[100];
 };
 #endif

@@ -11,11 +11,13 @@
 #include "CommunicationService.h"
 #include "Machine.h"
 #include "RemoteControlService.h"
+#include "HydraulicAggregate.h"
 
 
 IoConfiguration *io_config;
 Configuration *config;
 Compactor *compactor;
+HydraulicAggregate *aggregate;
 Heating *heating_upper_upper;
 Heating *heating_upper_lower;
 Heating *heating_lower_upper;
@@ -48,6 +50,8 @@ void setup() {
   compactor = new Compactor(config, io_config);
   debug_service = new DebugService();
 
+  aggregate = new HydraulicAggregate(1, io_config->pin_aggregate());
+
   lamp_orange = new Lamp(1, io_config->pin_lamp_orange(), debug_service);
   lamp_blue = new Lamp(2, io_config->pin_lamp_blue(), debug_service);
   lamp_green = new Lamp(3, io_config->pin_lamp_green(), debug_service);
@@ -57,7 +61,7 @@ void setup() {
   heating_lower_upper = new Heating(3, io_config->pin_heating_lower_upper_temperature_sensor(), io_config->pin_heating_lower_upper_oil_valve(), io_config->pin_heating_lower_upper_water_valve(), config);
   heating_lower_lower = new Heating(4, io_config->pin_heating_lower_lower_temperature_sensor(), io_config->pin_heating_lower_lower_oil_valve(), io_config->pin_heating_lower_lower_water_valve(), config);
 
-  machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower);
+  machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower, aggregate);
   remote_control_service = new RemoteControlService(config, machine);
   communication_service = new CommunicationService(config, remote_control_service);
 

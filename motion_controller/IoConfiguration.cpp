@@ -26,20 +26,21 @@ IoConfiguration::IoConfiguration() {
   _pin_compactor_endposition_open_sensor = 25;
   _pin_compactor_open_valve = 26;
   _pin_compactor_close_valve = 27;
+  _pin_aggregate = 13;
 
   pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
-  pinMode(_pin_operating_mode_setup_switch, INPUT);
-  pinMode(_pin_operating_mode_automatic_switch, INPUT);
+  //digitalWrite(13, LOW);
+  //pinMode(_pin_operating_mode_setup_switch, INPUT);
+  //pinMode(_pin_operating_mode_automatic_switch, INPUT);
   //pinMode(_pin_button_compactor_open, INPUT);
   //pinMode(_pin_compactor_close, INPUT);
   // pinMode(_pin_compactor_pressure_sensor, INPUT);
   // pinMode(_pin_compactor_endposition_close_sensor, INPUT);
   // pinMode(_pin_compactor_endposition_open_sensor, INPUT);
-  pinMode(_pin_heating_upper_upper_temperature_sensor, INPUT);
-  pinMode(_pin_heating_upper_lower_temperature_sensor, INPUT);
-  pinMode(_pin_heating_lower_upper_temperature_sensor, INPUT);
-  pinMode(_pin_heating_lower_lower_temperature_sensor, INPUT);
+  //pinMode(_pin_heating_upper_upper_temperature_sensor, INPUT);
+  //pinMode(_pin_heating_upper_lower_temperature_sensor, INPUT);
+  //pinMode(_pin_heating_lower_upper_temperature_sensor, INPUT);
+  //pinMode(_pin_heating_lower_lower_temperature_sensor, INPUT);
 }
 
 int IoConfiguration::pin_compactor_pressure_sensor(){
@@ -127,4 +128,7 @@ int IoConfiguration::pin_lamp_blue(){
 }
 int IoConfiguration::pin_lamp_green(){
   return _pin_lamp_green;
+}
+int IoConfiguration::pin_aggregate(){
+  return _pin_aggregate;
 }

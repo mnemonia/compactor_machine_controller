@@ -32,6 +32,7 @@ public:
 	int pin_lamp_orange();
 	int pin_lamp_blue();
 	int pin_lamp_green();
+	int pin_aggregate();
 private:
 	int _pin_compactor_pressure_sensor;
     int _pin_compactor_open_button;
@@ -58,5 +59,6 @@ private:
 	int _pin_lamp_orange;
 	int _pin_lamp_blue;
 	int _pin_lamp_green;
+	int _pin_aggregate;
 };
 #endif
