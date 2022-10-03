@@ -25,10 +25,19 @@ void CommunicationService::update(){
   // String input_string = "";
   String input_string = Serial.readStringUntil("\n");
   if (input_string.startsWith("P")) {
+    input_string.trim();
+    Serial.println(input_string);
     // Is a parameter. Let's apply it.
+    //input_string = input_string.substring(0, input_string.length() - 1);
+    //Serial.println(input_string);
     index = input_string.indexOf('=');
-    param_id = input_string.substring(1, index).toInt();
-    value = input_string.substring(index + 1).toInt();
+    Serial.println(index);
+    String param_id_str = input_string.substring(1, index);
+    Serial.println(param_id_str);
+    param_id = param_id_str.toInt();
+    String value_str = input_string.substring(index + 1);
+    Serial.println(value_str);
+    value = value_str.toInt();
     _config->apply(param_id, value);
   } else if (input_string.startsWith("C")) {
     command_id = input_string.substring(1).toInt();

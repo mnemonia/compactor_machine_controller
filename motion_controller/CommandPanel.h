@@ -29,7 +29,7 @@ private:
   //OperatingModeButton *_operating_mode_btn;
   Button *_operating_mode_setup_btn;
   Button *_operating_mode_automatic_btn;
-  Button *_hydraulic_switch;
+  //Button *_hydraulic_switch;
   DebugService *_debug_service;
 	void _configure();
 };
