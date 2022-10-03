@@ -22,30 +22,42 @@ void CommunicationService::update(){
   int param_id;
   int value;
   int command_id;
-  String input_string = "";
-  while (Serial.available()) {
-    // get the new byte:
-    char inChar = (char)Serial.read();
-    // add it to the inputString:
-    if (inChar != '\n') {
-      input_string += inChar;
-    }
-    // if the incoming character is a newline, set a flag so the main loop can
-    // do something about it:
-    if (inChar == '\n') {
-      is_complete = true;
-      // Serial.println("CommunicationService received data from serial: " + input_string);
-      if (input_string.startsWith("P")) {
-        // Is a parameter. Let's apply it.
-        index = input_string.indexOf('=');
-        param_id = input_string.substring(1, index).toInt();
-        value = input_string.substring(index + 1).toInt();
-        _config->apply(param_id, value);
-      }
-      if (input_string.startsWith("C")) {
-        command_id = input_string.substring(1).toInt();
-        _remote_control_service->trigger(command_id);
-      }
-    }
+  // String input_string = "";
+  String input_string = Serial.readStringUntil("\n");
+  if (input_string.startsWith("P")) {
+    // Is a parameter. Let's apply it.
+    index = input_string.indexOf('=');
+    param_id = input_string.substring(1, index).toInt();
+    value = input_string.substring(index + 1).toInt();
+    _config->apply(param_id, value);
+  } else if (input_string.startsWith("C")) {
+    command_id = input_string.substring(1).toInt();
+    _remote_control_service->trigger(command_id);
   }
+
+
+  // while (Serial.available()) {
+  //   // get the new byte:
+  //   char inChar = (char)Serial.read();
+  //   // add it to the inputString:
+  //   if (inChar != '\n') {
+  //     input_string += inChar;
+  //   }
+  //   // if the incoming character is a newline, set a flag so the main loop can
+  //   // do something about it:
+  //   if (inChar == '\n') {
+  //     is_complete = true;
+  //     // Serial.println("CommunicationService received data from serial: " + input_string);
+  //     if (input_string.startsWith("P")) {
+  //       // Is a parameter. Let's apply it.
+  //       index = input_string.indexOf('=');
+  //       param_id = input_string.substring(1, index).toInt();
+  //       value = input_string.substring(index + 1).toInt();
+  //       _config->apply(param_id, value);
+  //     } else if (input_string.startsWith("C")) {
+  //       command_id = input_string.substring(1).toInt();
+  //       _remote_control_service->trigger(command_id);
+  //     }
+  //   }
+  // }
 }

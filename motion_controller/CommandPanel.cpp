@@ -5,6 +5,8 @@
 #include "SetAutomaticOperationModeCommand.h"
 #include "SetManualOperationModeCommand.h"
 #include "SetSetupOperationModeCommand.h"
+#include "HydraulicAggregateStartCommand.h"
+#include "HydraulicAggregateStopCommand.h"
 #include "Button.h"
 #include "DebounceButton.h"
 #include "OperatingModeButton.h"
@@ -42,6 +44,11 @@ void CommandPanel::_configure() {
   SetSetupOperationModeCommand *op_setup_cmd = new SetSetupOperationModeCommand(_machine_behavior, this);
   _operating_mode_setup_btn = new DebounceButton(_io_config->pin_operating_mode_setup_switch(), "opmode.s", op_setup_cmd, op_manual_cmd, _debug_service);
 
+
+  HydraulicAggregateStartCommand *hy_start_cmd = new HydraulicAggregateStartCommand(_machine->aggregate());
+  HydraulicAggregateStopCommand *hy_stop_cmd = new HydraulicAggregateStopCommand(_machine->aggregate());
+  _hydraulic_switch = new DebounceButton(_io_config->pin_aggregate(), "hy.switch", hy_start_cmd, hy_stop_cmd, _debug_service);
+  
   //_machine->add_command(c_stop_cmd);
   //_machine->add_command(c_close_cmd);
   /* _operating_mode_btn = new OperatingModeButton(
