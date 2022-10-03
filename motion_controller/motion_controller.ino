@@ -41,7 +41,7 @@ void setup() {
   }
   Serial.setTimeout(15);
   Serial.println("Kessler Compactor Motion Controller");
-  Serial.flush();
+  Serial.println("starting...");
 
   io_config = new IoConfiguration();
   config = new Configuration();
@@ -67,6 +67,8 @@ void setup() {
 
   command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, debug_service);
 
+  Serial.println("ready");
+  Serial.flush();
   //debug_service->info("ready");
   //lamp_blue->turn_on();
 }
@@ -88,8 +90,6 @@ void check() {
 
 void tick() {
   compactor->tick();
-  Serial.print("heating_nominal_temperature_analog_value_1 is ");
-  Serial.println(config->get_heating_nominal_temperature_analog_value(1));
 }
 
 void _run_slow_tick() {
@@ -98,6 +98,9 @@ void _run_slow_tick() {
   heating_upper_lower->tick();
   heating_lower_upper->tick();
   heating_lower_lower->tick();
+  Serial.print("heating_nominal_temperature_analog_value_1 is ");
+  Serial.println(config->get_heating_nominal_temperature_analog_value(1));
+  Serial.flush();
 }
 
 void slow_tick() {
@@ -116,7 +119,7 @@ void loop() {
   check();
   tick();
   slow_tick();
-  delay(25);
+  delay(2);
  // debug_service->info("loop");
 }
 
