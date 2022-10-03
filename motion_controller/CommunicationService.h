@@ -16,5 +16,6 @@ private:
   Configuration *_config;
   RemoteControlService *_remote_control_service;
   bool _is_enabled;
+  String _cleanup(String value);
 };
 #endif

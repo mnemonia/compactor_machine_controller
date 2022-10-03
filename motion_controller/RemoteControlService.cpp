@@ -8,7 +8,7 @@ RemoteControlService::RemoteControlService(Configuration *config, Machine *machi
 void RemoteControlService::trigger(int command_id){
   if (!_is_enabled) { return; }
 
-  Serial.println(command_id);
+  // Serial.println(command_id);
   switch(command_id) {
     case 101:
       _machine->lamp_orange()->turn_on();
@@ -86,5 +86,4 @@ void RemoteControlService::trigger(int command_id){
       // _machine->execute_command(command_id);
       break;
   }
-
 }

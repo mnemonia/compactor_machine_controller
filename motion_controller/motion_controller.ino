@@ -30,7 +30,7 @@ EmergencyStop *emergency_stop;
 CommandPanel *command_panel;
 OperatingMode *operating_mode;
 unsigned long _current_slow_tick = 0;
-unsigned long _max_slow_tick = 100;
+unsigned long _max_slow_tick = 300;
 DebugService *debug_service;
 CommunicationService *communication_service;
 Machine *machine;
@@ -89,7 +89,7 @@ void setup() {
 
 void update() {
   communication_service->update();
-  //aggregate->update();
+  aggregate->update();
   compactor->update();
   heating_upper_upper->update();
   heating_upper_lower->update();
@@ -104,7 +104,7 @@ void check() {
 }
 
 void tick() {
-  //  aggregate->tick();
+  aggregate->tick();
   compactor->tick();
 }
 
@@ -114,9 +114,9 @@ void _run_slow_tick() {
   heating_upper_lower->tick();
   heating_lower_upper->tick();
   heating_lower_lower->tick();
-  Serial.print("heating_nominal_temperature_analog_value_1 is ");
+ // Serial.print("heating_nominal_temperature_analog_value_1 is ");
   Serial.println(config->get_heating_nominal_temperature_analog_value(1));
-  Serial.flush();
+  //Serial.flush();
 }
 
 void slow_tick() {

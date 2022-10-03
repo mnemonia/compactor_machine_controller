@@ -24,23 +24,24 @@ void CommunicationService::update(){
   int command_id;
   // String input_string = "";
   String input_string = Serial.readStringUntil("\n");
+  //char buffer[100];
+  //Serial.readBytesUntil("\n", buffer, 100);
+  //String input_string("P511=43");
+  //Serial.println(input_string);
   if (input_string.startsWith("P")) {
-    input_string.trim();
-    Serial.println(input_string);
+    input_string = _cleanup(input_string);
     // Is a parameter. Let's apply it.
     //input_string = input_string.substring(0, input_string.length() - 1);
     //Serial.println(input_string);
     index = input_string.indexOf('=');
-    Serial.println(index);
-    String param_id_str = input_string.substring(1, index);
-    Serial.println(param_id_str);
+    String param_id_str = input_string.substring(0, index);
     param_id = param_id_str.toInt();
     String value_str = input_string.substring(index + 1);
-    Serial.println(value_str);
     value = value_str.toInt();
     _config->apply(param_id, value);
   } else if (input_string.startsWith("C")) {
-    command_id = input_string.substring(1).toInt();
+    input_string = _cleanup(input_string);
+    command_id = input_string.toInt();
     _remote_control_service->trigger(command_id);
   }
 
@@ -69,4 +70,17 @@ void CommunicationService::update(){
   //     }
   //   }
   // }
+}
+
+
+String CommunicationService::_cleanup(String value) {
+  // Serial.print("[");
+  // Serial.print(value);
+  // Serial.println("]");
+  value.remove(value.length() - 1, 1);
+  value.remove(0, 1);
+  // Serial.print("[[");
+  // Serial.print(value);
+  // Serial.println("]]");
+  return value;
 }
