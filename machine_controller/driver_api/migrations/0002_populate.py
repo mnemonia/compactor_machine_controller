@@ -7,26 +7,95 @@ PARAMS = [
         "param_id": 511,
         "index": 1,
         "label": "Temperatur oben oben",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
         "value": 22,
     },
     {
         "param_id": 512,
         "index": 1,
         "label": "Temperatur oben unten",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
         "value": 22,
     },
     {
         "param_id": 513,
         "index": 1,
         "label": "Temperatur unten oben",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
         "value": 22,
     },
     {
         "param_id": 514,
         "index": 1,
         "label": "Temperatur unten unten",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
         "value": 22,
     },
+
+    {
+        "param_id": 521,
+        "index": 1,
+        "label": "Kuehlung oben oben",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
+        "value": 19,
+    },
+    {
+        "param_id": 522,
+        "index": 1,
+        "label": "Kuehlung oben unten",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
+        "value": 19,
+    },
+    {
+        "param_id": 523,
+        "index": 1,
+        "label": "Kuehlung unten oben",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
+        "value": 19,
+    },
+    {
+        "param_id": 524,
+        "index": 1,
+        "label": "Kuehlung unten unten",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "NOMINAL",
+        "value": 19,
+    },
+
+    {
+        "param_id": 330,
+        "index": 1,
+        "label": "Endlage Offen",
+        "device_type": "SENSOR",
+        "component_type": "COMPACTOR",
+        "param_type": "ACTUAL",
+        "value": 0,
+    },
+    {
+        "param_id": 331,
+        "index": 1,
+        "label": "Endlage Geschlossen",
+        "device_type": "SENSOR",
+        "component_type": "COMPACTOR",
+        "param_type": "ACTUAL",
+        "value": 0,
+    },
+
 ]
 
 
@@ -40,6 +109,9 @@ def create_params(apps, schema_editor):
         p.index = param_js["index"]
         p.label = param_js["label"]
         p.value = param_js["value"]
+        p.device_type = param_js["device_type"]
+        p.component_type = param_js["component_type"]
+        p.param_type = param_js["param_type"]
         p.save()
 
 

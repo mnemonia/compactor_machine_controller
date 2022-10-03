@@ -90,11 +90,25 @@ void RemoteControlService::trigger(int command_id){
 
 void RemoteControlService::writeParamsToSerial() {
   Serial.print("511=");
-  Serial.print(_config->get_heating_nominal_temperature_analog_value(1));
+  Serial.print(_config->get_heating_nominal_temperature_in_celsius(1));
   Serial.print(";512=");
-  Serial.print(_config->get_heating_nominal_temperature_analog_value(2));
+  Serial.print(_config->get_heating_nominal_temperature_in_celsius(2));
   Serial.print(";513=");
-  Serial.print(_config->get_heating_nominal_temperature_analog_value(3));
+  Serial.print(_config->get_heating_nominal_temperature_in_celsius(3));
   Serial.print(";514=");
-  Serial.println(_config->get_heating_nominal_temperature_analog_value(4));
+  Serial.println(_config->get_heating_nominal_temperature_in_celsius(4));
+
+  Serial.print("521=");
+  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(1));
+  Serial.print(";522=");
+  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(2));
+  Serial.print(";523=");
+  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(3));
+  Serial.print(";524=");
+  Serial.println(_config->get_heating_nominal_cooling_temperature_in_celsius(4));
+
+  Serial.print("330=");
+  Serial.print(_config->get_compactor_endposition_open_status());
+  Serial.print(";331=");
+  Serial.println(_config->get_compactor_endposition_close_status());  
 }

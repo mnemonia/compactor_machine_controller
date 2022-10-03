@@ -9,12 +9,12 @@ from rest_framework import status
 from rest_framework import generics
 
 class SensorList(generics.ListCreateAPIView):
-    queryset = Param.objects.all()
+    queryset = Param.objects.filter(device_type="SENSOR").all()
     serializer_class = ParamSerializer
 
 
 class ParamList(generics.ListCreateAPIView):
-    queryset = Param.objects.all()
+    queryset = Param.objects.filter(device_type="ACTOR").all()
     serializer_class = ParamSerializer
     # """
     # List all snippets, or create a new snippet.

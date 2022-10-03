@@ -90,7 +90,7 @@ void Compactor::_continue_stop() {
 }
 
 bool Compactor::_in_endposition_close() {
-  return digitalRead(_io_config->pin_compactor_endposition_close_sensor()) == HIGH;
+  return _config->set_compactor_endposition_close_status(digitalRead(_io_config->pin_compactor_endposition_close_sensor())) == HIGH;
 }
 
 bool Compactor::_in_endposition_open() {

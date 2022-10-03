@@ -43,7 +43,7 @@ async def read_and_print(aioserial_instance: aioserial.AioSerial):
                         }
                         async with session.put("{}{}/".format(url, param_id), headers=headers, json=body) as resp:
                             print(resp.status)
-                            print(await resp.text())                    
+                            #print(await resp.text())                    
 
         #    break        
 
@@ -81,5 +81,9 @@ async def main():
     print(a, b)
 
 # asyncio.run(read_and_print(aioserial.AioSerial(port='COM7')))
-asyncio.run(main())
+while True:
+    try:
+        asyncio.run(main())
+    except:
+        pass
 #asyncio.run(asyncio.gather( read_and_print(serial_instance), write_and_print(serial_instance)  ))

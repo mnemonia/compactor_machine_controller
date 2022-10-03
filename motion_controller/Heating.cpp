@@ -45,12 +45,12 @@ void Heating::update(){
   int current_temperature_measurement_value_in_raw = analogRead(_pin_temperature_sensor);
   _current_temperature_measurement_value_in_celsius = _rawToCelsius(current_temperature_measurement_value_in_raw);
 
-  int temperature_nominal_value_in_celsius = _config->get_heating_nominal_temperature_analog_value(_heating_index);
+  int temperature_nominal_value_in_celsius = _config->get_heating_nominal_temperature_in_celsius(_heating_index);
   if (temperature_nominal_value_in_celsius != _current_temperature_nominal_value_in_celsius) {
     _current_temperature_nominal_value_in_celsius = temperature_nominal_value_in_celsius;
    // _pid_heat_up.setpoint(new_temperature_nominal_value);
   }
-  int new_cooling_temperature_nominal_value = _config->get_heating_nominal_cooling_temperature_analog_value(_heating_index);
+  int new_cooling_temperature_nominal_value = _config->get_heating_nominal_cooling_temperature_in_celsius(_heating_index);
   if (new_cooling_temperature_nominal_value != _current_cooling_temperature_nominal_value_in_celsius) {
     _current_cooling_temperature_nominal_value_in_celsius = new_cooling_temperature_nominal_value;
     // _pid_cool_down.setpoint(new_cooling_temperature_nominal_value);
