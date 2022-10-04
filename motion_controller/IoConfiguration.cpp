@@ -11,7 +11,7 @@ IoConfiguration::IoConfiguration() {
   _pin_heating_upper_lower_temperature_sensor = 9;
   _pin_heating_lower_upper_temperature_sensor = 10;
   _pin_heating_lower_lower_temperature_sensor = 11;
-  _pin_heating_upper_upper_oil_valve = 12;
+  _pin_heating_upper_upper_oil_valve = 21;
   _pin_heating_upper_lower_oil_valve = 14;
   _pin_heating_lower_upper_oil_valve = 15;
   _pin_heating_lower_lower_oil_valve = 16;
@@ -19,14 +19,14 @@ IoConfiguration::IoConfiguration() {
   _pin_heating_upper_lower_water_valve = 18;
   _pin_heating_lower_upper_water_valve = 19;
   _pin_heating_lower_lower_water_valve = 20;
-  _pin_lamp_orange = 21;
-  _pin_lamp_blue = 22;
+  _pin_lamp_orange = 12;
+  _pin_lamp_blue = 13;
   _pin_lamp_green = 23;
   _pin_compactor_endposition_close_sensor = 24;
   _pin_compactor_endposition_open_sensor = 25;
   _pin_compactor_open_valve = 26;
   _pin_compactor_close_valve = 27;
-  _pin_aggregate = 13;
+  _pin_aggregate = 28;
 
   pinMode(13, OUTPUT);
   //digitalWrite(13, LOW);

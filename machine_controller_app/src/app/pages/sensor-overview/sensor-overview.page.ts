@@ -16,7 +16,7 @@ export class SensorOverviewPage implements OnInit {
   ngOnInit() {
     this.subsc = this.sensorService.getSensors().subscribe(
       (params) => {
-        console.log(params);
+        //console.log(params);
         this.params = params;
       },
       (err) => console.warn(err),

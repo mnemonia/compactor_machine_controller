@@ -31,6 +31,8 @@ CommandPanel *command_panel;
 OperatingMode *operating_mode;
 unsigned long _current_slow_tick = 0;
 unsigned long _max_slow_tick = 300;
+unsigned long _current_param_readout_tick = 0;
+unsigned long _max_param_readout_tick = 900;
 DebugService *debug_service;
 CommunicationService *communication_service;
 Machine *machine;
@@ -100,7 +102,7 @@ void update() {
 
 void check() {
   emergency_stop->check();
-  //command_panel->check();
+  command_panel->check();
 }
 
 void tick() {
@@ -109,15 +111,14 @@ void tick() {
 }
 
 void _run_slow_tick() {
-  // debug_service->info("slow tick");
   heating_upper_upper->tick();
   heating_upper_lower->tick();
   heating_lower_upper->tick();
   heating_lower_lower->tick();
- // Serial.print("heating_nominal_temperature_analog_value_1 is ");
-  //Serial.println(config->get_heating_nominal_temperature_analog_value(1));
+}
+
+void _run_param_readout_tick() {
   remote_control_service->writeParamsToSerial();
-  //Serial.flush();
 }
 
 void slow_tick() {
@@ -129,6 +130,15 @@ void slow_tick() {
   }
 }
 
+void param_readout_tick() {
+  if (_current_param_readout_tick >= _max_param_readout_tick) {
+    _current_param_readout_tick = 0;
+    _run_param_readout_tick();
+  } else {
+    _current_param_readout_tick++;
+  }
+}
+
 // the loop function runs over and over again forever
 void loop() {
   debug_service->emit();
@@ -136,6 +146,7 @@ void loop() {
   check();
   tick();
   slow_tick();
+  param_readout_tick();
   delay(2);
  // debug_service->info("loop");
 }

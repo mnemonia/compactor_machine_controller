@@ -19,9 +19,6 @@ Configuration::Configuration():
 }
 
 void Configuration::apply(int key, int value) {
-	// Serial.print(key);
-	// Serial.print("=");
-	// Serial.println(value);
 	switch(key) {
 		case 100:
 			_stamp_duration_in_s = value;

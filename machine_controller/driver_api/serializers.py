@@ -8,3 +8,9 @@ class ParamSerializer(serializers.HyperlinkedModelSerializer):
         model = Param
         fields = ['id', 'param_id', 'index', 'label', 'value', 'timestamp', 'device_type', 'component_type']
         read_only_fields = ['id', 'param_id', 'index', 'label', 'device_type', 'component_type']
+
+class ConfigParamValueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Param
+        fields = ['param_id', 'value']
+        read_only_fields = fields
