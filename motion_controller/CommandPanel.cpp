@@ -5,8 +5,8 @@
 #include "SetAutomaticOperationModeCommand.h"
 #include "SetManualOperationModeCommand.h"
 #include "SetSetupOperationModeCommand.h"
-//#include "HydraulicAggregateStartCommand.h"
-//#include "HydraulicAggregateStopCommand.h"
+#include "HydraulicAggregateStartCommand.h"
+#include "HydraulicAggregateStopCommand.h"
 #include "Button.h"
 #include "DebounceButton.h"
 #include "OperatingModeButton.h"
@@ -34,9 +34,14 @@ CommandPanel::CommandPanel(MachineBehavior *machine_behavior, Machine *machine, 
   SetSetupOperationModeCommand *op_setup_cmd = new SetSetupOperationModeCommand(_machine_behavior, this);
   _operating_mode_setup_btn = new DebounceButton(_io_config->pin_operating_mode_setup_switch(), 4, op_setup_cmd, op_manual_cmd);
 
+  HydraulicAggregateStartCommand *a_start_cmd = new HydraulicAggregateStartCommand(_machine->aggregate());
+  HydraulicAggregateStopCommand *a_stop_cmd = new HydraulicAggregateStopCommand(_machine->aggregate());
+  _aggregate_switch = new DebounceButton(_io_config->pin_aggregate_start_button(), 1, a_start_cmd, a_stop_cmd);
+
 }
 
 void CommandPanel::check() {
+  _aggregate_switch->check();
   _compactor_open_btn->check();
   _compactor_close_btn->check();
   _operating_mode_setup_btn->check();
@@ -58,9 +63,9 @@ void CommandPanel::_configure() {
   _operating_mode_setup_btn = new DebounceButton(_io_config->pin_operating_mode_setup_switch(), "opmode.s", op_setup_cmd, op_manual_cmd);
 
 
- // HydraulicAggregateStartCommand *hy_start_cmd = new HydraulicAggregateStartCommand(_machine->aggregate());
- // HydraulicAggregateStopCommand *hy_stop_cmd = new HydraulicAggregateStopCommand(_machine->aggregate());
- // _hydraulic_switch = new DebounceButton(_io_config->pin_aggregate(), "hy.switch", hy_start_cmd, hy_stop_cmd);
+  HydraulicAggregateStartCommand *hy_start_cmd = new HydraulicAggregateStartCommand(_machine->aggregate());
+  HydraulicAggregateStopCommand *hy_stop_cmd = new HydraulicAggregateStopCommand(_machine->aggregate());
+  _aggregate_switch = new DebounceButton(_io_config->pin_aggregate(), "hy.switch", hy_start_cmd, hy_stop_cmd);
   //_hydraulic_switch = 0;
   //_machine->add_command(c_stop_cmd);
   //_machine->add_command(c_close_cmd);

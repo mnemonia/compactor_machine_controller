@@ -26,6 +26,7 @@ private:
   OperatingMode *_operating_mode;
   Button *_compactor_open_btn;
   Button *_compactor_close_btn;
+  Button *_aggregate_switch;
   //OperatingModeButton *_operating_mode_btn;
   Button *_operating_mode_setup_btn;
   Button *_operating_mode_automatic_btn;

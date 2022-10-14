@@ -105,7 +105,7 @@ async def pull_and_push(aioserial_instance):
 
 
 async def write_and_print(aioserial_instance: aioserial.AioSerial):
-    await asyncio.sleep(5)
+    await asyncio.sleep(15)
     # while True:
     #await asyncio.sleep(2)
     #print("send param")
@@ -113,7 +113,7 @@ async def write_and_print(aioserial_instance: aioserial.AioSerial):
     #await aioserial_instance.write_async(_as_bytes("P511=99"))
     #await asyncio.sleep(2)
     marker = 2
-    cmd_id = 12
+    cmd_id = 34
     #encode('ascii')
     #b_cmd_id = struct.pack("h", cmd_id)
     #s_cmd_id = len(b_cmd_id)
@@ -123,9 +123,9 @@ async def write_and_print(aioserial_instance: aioserial.AioSerial):
     byte_array += bytes("\n", 'utf-8')
     print(byte_array)
     await aioserial_instance.writelines_async([byte_array])
-    await asyncio.sleep(3)
+    await asyncio.sleep(5)
 
-    cmd_id = 15
+    cmd_id = 33
     byte_array = marker.to_bytes(1, 'big')
     byte_array += cmd_id.to_bytes(2, 'big', signed=False)
     byte_array += bytes("\n", 'utf-8')
@@ -158,7 +158,7 @@ def _as_bytes(string_value):
 
 
 async def main():
-    aioserial_instance = aioserial.AioSerial(port='COM8')
+    aioserial_instance = aioserial.AioSerial(port='COM9')
     a, b = await asyncio.gather(
         read_and_print(aioserial_instance),
         write_and_print(aioserial_instance),

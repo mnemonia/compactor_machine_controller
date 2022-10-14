@@ -12,6 +12,7 @@
 #include "Machine.h"
 #include "RemoteControlService.h"
 #include "HydraulicAggregate.h"
+#include "IoInitializationService.h"
 
 
 IoConfiguration *io_config;
@@ -37,6 +38,7 @@ DebugService *debug_service;
 CommunicationService *communication_service;
 Machine *machine;
 RemoteControlService *remote_control_service;
+IoInitializationService *io_initialization_service;
 
 void setup() {
   Serial.begin(9600);
@@ -70,6 +72,8 @@ void setup() {
   Serial.println("init machine");
   machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower, aggregate);
 
+  io_initialization_service = new IoInitializationService(machine);
+
   Serial.println("init remote interface");
   remote_control_service = new RemoteControlService(config, machine);
   communication_service = new CommunicationService(config, remote_control_service);
@@ -83,6 +87,8 @@ void setup() {
   Serial.println("init emergency stop");
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
 
+  io_initialization_service->initialize();
+  
   Serial.println("ready");
   Serial.flush();
   //debug_service->info("ready");
