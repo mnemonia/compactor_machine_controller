@@ -9,6 +9,7 @@
 #include "HydraulicAggregateStopCommand.h"
 #include "TemperatureControlOnCommand.h"
 #include "TemperatureControlOffCommand.h"
+#include "NopeCommand.h"
 #include "Button.h"
 #include "DebounceButton.h"
 #include "OperatingModeButton.h"
@@ -106,6 +107,7 @@ void CommandPanel::set_operating_mode_manual() {
   _compactor_open_btn->enable();
   _compactor_close_btn->enable();
   _operating_mode_automatic_btn->enable();
+  _operating_mode_setup_btn->enable();
   _aggregate_switch->enable();
   _temperature_control_btn->enable();
 }

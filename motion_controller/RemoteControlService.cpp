@@ -85,6 +85,15 @@ void RemoteControlService::trigger(int command_id){
     case 35:
       // _machine->execute_command(command_id);
       break;
+    case 40:
+      _machine->operating_mode()->set_setup();
+      break;
+    case 41:
+      _machine->operating_mode()->set_manual();
+      break;
+    case 42:
+      _machine->operating_mode()->set_automatic();
+      break;
   }
 }
 
@@ -117,7 +126,7 @@ void RemoteControlService::writeStatesToSerial() {
   Serial.print("400=");
   Serial.print(_machine->operating_mode()->state());
   Serial.print(";401=");
-  Serial.print(_machine->aggregate()->state());
-  Serial.print(";402=");
-  Serial.println(_machine->compactor()->state());
+  Serial.println(_machine->aggregate()->state());
+  //Serial.print(";402=");
+  //Serial.println(_machine->compactor()->state());
 }

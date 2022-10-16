@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 
 class Param(models.Model):
     SENSOR = 'SENSOR'
@@ -50,4 +50,4 @@ class Param(models.Model):
         choices=PARAM_TYPE_CHOICES,
         default=NOMINAL,
     )
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now())

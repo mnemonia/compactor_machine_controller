@@ -1,6 +1,6 @@
 #include "OperatingMode.h"
 
-OperatingMode::OperatingMode(): _current_operating_mode(0), SETUP(0), MANUAL(1), AUTOMATIC(2)
+OperatingMode::OperatingMode(): _current_operating_mode(1), SETUP(0), MANUAL(1), AUTOMATIC(2)
 {
 }
 

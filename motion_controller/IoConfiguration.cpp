@@ -5,8 +5,8 @@ IoConfiguration::IoConfiguration() {
   _pin_compactor_pressure_sensor = A6;
   _pin_compactor_open_button = A13;
   _pin_compactor_close_button = A3;
-  _pin_operating_mode_automatic_switch = A4;
-  _pin_operating_mode_setup_switch = A1;
+  _pin_operating_mode_automatic_switch = A1;
+  _pin_operating_mode_setup_switch = A4;
   _pin_heating_upper_upper_temperature_sensor = A2;
   _pin_heating_upper_lower_temperature_sensor = A8;
   _pin_heating_lower_upper_temperature_sensor = A9;

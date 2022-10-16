@@ -35,7 +35,7 @@ unsigned long _max_slow_tick = 300;
 unsigned long _current_param_readout_tick = 0;
 unsigned long _max_param_readout_tick = 900;
 unsigned long _current_state_readout_tick = 0;
-unsigned long _max_state_readout_tick = 200;
+unsigned long _max_state_readout_tick = 100;
 DebugService *debug_service;
 CommunicationService *communication_service;
 Machine *machine;
@@ -90,7 +90,7 @@ void setup() {
   Serial.println("init emergency stop");
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
 
-  io_initialization_service->initialize();
+ // io_initialization_service->initialize();
   
   Serial.println("ready");
   Serial.flush();
@@ -128,6 +128,7 @@ void _run_slow_tick() {
 
 void _run_param_readout_tick() {
   remote_control_service->writeParamsToSerial();
+  //remote_control_service->writeStatesToSerial();
 }
 
 void _run_state_readout_tick() {

@@ -10,14 +10,14 @@ DebounceButton::DebounceButton(int di_pin, int id, Command *down_command, Comman
   _state_last_read(LOW),
   _last_debounce_time(0),
   _debounce_delay(50),
-  _is_enabled(true)
+  _is_enabled(false)
 {
   // pinMode(_di_pin, INPUT);
 }
 
 void DebounceButton::check() {
-  Serial.print("DebounceButton::check ");
-  Serial.println(_is_enabled);
+  // Serial.print("DebounceButton::check ");
+  // Serial.println(_is_enabled);
   if (_is_enabled == false) {
     return;
   }
@@ -51,7 +51,9 @@ void DebounceButton::check() {
       _button_state = pin_state;
 
       if (_button_state == HIGH) {
-        //_debug_service->info("button " + _id + " down");
+        //Serial.print("button ");
+        //Serial.print(_id);
+        //Serial.println(" down");
         _up_command->cancel();
         _down_command->execute();
       } else {
