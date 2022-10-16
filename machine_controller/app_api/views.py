@@ -13,6 +13,10 @@ class SensorList(generics.ListCreateAPIView):
     serializer_class = ParamSerializer
 
 
+class StateList(generics.ListCreateAPIView):
+    queryset = Param.objects.filter(param_type="STATE").all()
+    serializer_class = ParamSerializer
+
 class ParamList(generics.ListCreateAPIView):
     queryset = Param.objects.filter(device_type="ACTOR").all()
     serializer_class = ParamSerializer

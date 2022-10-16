@@ -101,7 +101,7 @@ PARAMS = [
         "label": "Betriebsart",
         "device_type": "ACTOR",
         "component_type": "COMPACTOR",
-        "param_type": "ACTUAL",
+        "param_type": "STATE",
         "value": 0,
     },
     {
@@ -110,7 +110,7 @@ PARAMS = [
         "label": "Aggregat Status",
         "device_type": "ACTOR",
         "component_type": "AGGREGATE",
-        "param_type": "ACTUAL",
+        "param_type": "STATE",
         "value": 0,
     },
     {
@@ -119,7 +119,7 @@ PARAMS = [
         "label": "Presse Status",
         "device_type": "ACTOR",
         "component_type": "COMPACTOR",
-        "param_type": "ACTUAL",
+        "param_type": "STATE",
         "value": 0,
     },
 

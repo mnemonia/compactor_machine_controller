@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'heating-overview',
     loadChildren: () => import('./pages/heating-overview/heating-overview.module').then( m => m.HeatingOverviewPageModule)
   },
+  {
+    path: 'state-overview',
+    loadChildren: () => import('./pages/state-overview/state-overview.module').then( m => m.StateOverviewPageModule)
+  },
 ];
 
 @NgModule({
