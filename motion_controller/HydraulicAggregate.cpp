@@ -35,3 +35,19 @@ void HydraulicAggregate::tick(){
       break;
   }
 }
+
+int HydraulicAggregate::state(){
+  return _current_state;
+}
+
+void HydraulicAggregate::next_state(){
+  switch(_current_state){
+    default:
+    case 0:
+      turn_on();
+      break;
+    case 1:
+      turn_off();
+      break;
+  }
+}

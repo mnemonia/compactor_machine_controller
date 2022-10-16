@@ -2,12 +2,12 @@
 #include "IoConfiguration.h"
 
 IoConfiguration::IoConfiguration() {
-  _pin_compactor_pressure_sensor = A1;
-  _pin_compactor_open_button = A2;
+  _pin_compactor_pressure_sensor = A6;
+  _pin_compactor_open_button = A13;
   _pin_compactor_close_button = A3;
   _pin_operating_mode_automatic_switch = A4;
-  _pin_operating_mode_setup_switch = A6;
-  _pin_heating_upper_upper_temperature_sensor = A7;
+  _pin_operating_mode_setup_switch = A1;
+  _pin_heating_upper_upper_temperature_sensor = A2;
   _pin_heating_upper_lower_temperature_sensor = A8;
   _pin_heating_lower_upper_temperature_sensor = A9;
   _pin_heating_lower_lower_temperature_sensor = A10;
@@ -27,8 +27,9 @@ IoConfiguration::IoConfiguration() {
   _pin_compactor_open_valve = 34;
   _pin_compactor_close_valve = 36;
   _pin_aggregate = 37;
-  _pin_aggregate_start_button = A13;
+  _pin_aggregate_start_button = A7;
   _pin_aggregate_stop_button = A14;
+  _pin_temperature_control_button = A15;
 
   pinMode(13, OUTPUT);
   //digitalWrite(13, HIGH);
@@ -141,4 +142,8 @@ int IoConfiguration::pin_aggregate_start_button(){
 
 int IoConfiguration::pin_aggregate_stop_button(){
   return _pin_aggregate_stop_button;
+}
+
+int IoConfiguration::pin_temperature_control_button(){
+  return _pin_temperature_control_button;
 }

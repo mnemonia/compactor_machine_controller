@@ -95,6 +95,33 @@ PARAMS = [
         "param_type": "ACTUAL",
         "value": 0,
     },
+    {
+        "param_id": 400,
+        "index": 1,
+        "label": "Betriebsart",
+        "device_type": "ACTOR",
+        "component_type": "COMPACTOR",
+        "param_type": "ACTUAL",
+        "value": 0,
+    },
+    {
+        "param_id": 401,
+        "index": 1,
+        "label": "Aggregat Status",
+        "device_type": "ACTOR",
+        "component_type": "AGGREGATE",
+        "param_type": "ACTUAL",
+        "value": 0,
+    },
+    {
+        "param_id": 402,
+        "index": 1,
+        "label": "Presse Status",
+        "device_type": "ACTOR",
+        "component_type": "COMPACTOR",
+        "param_type": "ACTUAL",
+        "value": 0,
+    },
 
 ]
 

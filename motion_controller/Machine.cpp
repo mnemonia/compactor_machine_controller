@@ -1,6 +1,7 @@
 #include "Machine.h"
 
-Machine::Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower, HydraulicAggregate *aggregate):
+Machine::Machine(OperatingMode *operating_mode, Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower, HydraulicAggregate *aggregate):
+ _operating_mode(operating_mode),
  _compactor(compactor),
  _lamp_orange(lamp_orange),
  _lamp_blue(lamp_blue),
@@ -11,6 +12,10 @@ Machine::Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp 
  _heating_lower_lower(heating_lower_lower),
  _aggregate(aggregate)
 {
+}
+
+OperatingMode* Machine::operating_mode() {
+    return _operating_mode;
 }
 
 Compactor* Machine::compactor() {

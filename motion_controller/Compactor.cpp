@@ -74,6 +74,14 @@ void Compactor::tick(){
   }  
 }
 
+int Compactor::state(){
+  return _current_state;
+}
+
+void Compactor::next_state(){
+  // TODO What do here?
+}
+
 void Compactor::_continue_open() {
   digitalWrite(_io_config->pin_compactor_open_valve(), HIGH);
   digitalWrite(_io_config->pin_compactor_close_valve(), LOW);

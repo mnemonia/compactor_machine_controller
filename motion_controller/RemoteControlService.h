@@ -11,6 +11,7 @@ public:
 	RemoteControlService(Configuration *config, Machine *machine);
   void trigger(int command_id);
   void writeParamsToSerial();
+  void writeStatesToSerial();
 
 private:
   Configuration *_config;

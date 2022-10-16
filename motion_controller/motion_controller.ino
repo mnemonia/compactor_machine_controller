@@ -34,6 +34,8 @@ unsigned long _current_slow_tick = 0;
 unsigned long _max_slow_tick = 300;
 unsigned long _current_param_readout_tick = 0;
 unsigned long _max_param_readout_tick = 900;
+unsigned long _current_state_readout_tick = 0;
+unsigned long _max_state_readout_tick = 200;
 DebugService *debug_service;
 CommunicationService *communication_service;
 Machine *machine;
@@ -69,8 +71,10 @@ void setup() {
   heating_lower_upper = new Heating(3, io_config->pin_heating_lower_upper_temperature_sensor(), io_config->pin_heating_lower_upper_oil_valve(), io_config->pin_heating_lower_upper_water_valve(), config);
   heating_lower_lower = new Heating(4, io_config->pin_heating_lower_lower_temperature_sensor(), io_config->pin_heating_lower_lower_oil_valve(), io_config->pin_heating_lower_lower_water_valve(), config);
 
+  operating_mode = new OperatingMode();
+
   Serial.println("init machine");
-  machine = new Machine(compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower, aggregate);
+  machine = new Machine(operating_mode, compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower, aggregate);
 
   io_initialization_service = new IoInitializationService(machine);
 
@@ -79,7 +83,6 @@ void setup() {
   communication_service = new CommunicationService(config, remote_control_service);
 
   machine_behavior = new MachineBehavior();
-  operating_mode = new OperatingMode();
 
   Serial.println("init conrtol panel");
   command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, debug_service);
@@ -127,6 +130,10 @@ void _run_param_readout_tick() {
   remote_control_service->writeParamsToSerial();
 }
 
+void _run_state_readout_tick() {
+  remote_control_service->writeStatesToSerial();
+}
+
 void slow_tick() {
   if (_current_slow_tick >= _max_slow_tick) {
     _current_slow_tick = 0;
@@ -145,6 +152,15 @@ void param_readout_tick() {
   }
 }
 
+void state_readout_tick() {
+  if (_current_state_readout_tick >= _max_state_readout_tick) {
+    _current_state_readout_tick = 0;
+    _run_state_readout_tick();
+  } else {
+    _current_state_readout_tick++;
+  }
+}
+
 // the loop function runs over and over again forever
 void loop() {
   debug_service->emit();
@@ -153,6 +169,7 @@ void loop() {
   tick();
   slow_tick();
   param_readout_tick();
+  state_readout_tick();
   delay(2);
  // debug_service->info("loop");
 }

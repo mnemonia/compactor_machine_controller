@@ -8,12 +8,14 @@ class Param(models.Model):
         (SENSOR, 'Sensor'),
         (ACTOR, 'Aktor'),
     ]
+    OPERATING_MODE = 'OPERATING_MODE'
     HEATING = 'HEATING'
     AGGREGATE = 'AGGREGATE'
     LAMP = 'LAMP'
     VALVE = 'VALVE'
     COMPACTOR = 'COMPACTOR'
     COMPONENT_TYPE_CHOICES =  [
+        (OPERATING_MODE, 'Betriebsart'),
         (HEATING, 'Heizung'),
         (AGGREGATE, 'Hydraulik Aggregat'),
         (LAMP, 'Lampe'),
@@ -22,9 +24,11 @@ class Param(models.Model):
     ]
     NOMINAL = 'NOMINAL'
     ACTUAL = 'ACTUAL'
+    STATE = 'STATE'
     PARAM_TYPE_CHOICES = [
         (NOMINAL, 'Sollwert'),
         (ACTUAL, 'Istwert'),
+        (STATE, 'Zustand'),
     ]
     id = models.AutoField(primary_key=True)
     param_id = models.IntegerField(unique=True) 

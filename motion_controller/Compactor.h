@@ -3,11 +3,12 @@
 
 #include "Arduino.h"
 #include "Executable.h"
+#include "Stateable.h"
 #include "Configuration.h"
 #include "IoConfiguration.h"
 #include "PIDController.h"
 
-class Compactor: public Executable {
+class Compactor: public Executable, Stateable {
 public:
 	Compactor(Configuration *config, IoConfiguration *io_config);
 	void stop();
@@ -18,6 +19,9 @@ public:
   void update();
   void execute();
   void tick();
+
+	int state();
+	void next_state();
 
 private:
 	//int _closing_pressure_ai_pin;

@@ -10,18 +10,27 @@ DebounceButton::DebounceButton(int di_pin, int id, Command *down_command, Comman
   _state_last_read(LOW),
   _last_debounce_time(0),
   _debounce_delay(50),
-  _is_enabled(false)
+  _is_enabled(true)
 {
-  pinMode(_di_pin, INPUT);
+  // pinMode(_di_pin, INPUT);
 }
 
 void DebounceButton::check() {
+  Serial.print("DebounceButton::check ");
+  Serial.println(_is_enabled);
   if (_is_enabled == false) {
     return;
   }
 
  // read the state of the switch into a local variable:
-  int pin_state = digitalRead(_di_pin);
+  // int pin_state = digitalRead(_di_pin);
+  int sensor_value = analogRead(_di_pin);
+  int output_value = map(sensor_value, 0, 1023, 0, 255);
+
+  int pin_state = 0;
+  if (output_value > 253) {
+    pin_state = 1;
+  }
 
   // check to see if you just pressed the button
   // (i.e. the input went from LOW to HIGH), and you've waited long enough

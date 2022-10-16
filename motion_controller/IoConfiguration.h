@@ -35,6 +35,7 @@ public:
 	int pin_aggregate();
 	int pin_aggregate_start_button();
 	int pin_aggregate_stop_button();
+	int pin_temperature_control_button();
 private:
 	int _pin_compactor_pressure_sensor;
     int _pin_compactor_open_button;
@@ -64,5 +65,6 @@ private:
 	int _pin_aggregate;
 	int _pin_aggregate_start_button;
 	int _pin_aggregate_stop_button;
+	int _pin_temperature_control_button;
 };
 #endif

@@ -5,13 +5,15 @@
 #include "Compactor.h"
 #include "Lamp.h"
 #include "Command.h"
+#include "OperatingMode.h"
 #include "Heating.h"
 #include "HydraulicAggregate.h"
 
 
 class Machine {
 public:
-	Machine(Compactor* compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower, HydraulicAggregate *aggregate);
+	Machine(OperatingMode *operating_mode, Compactor *compactor, Lamp *lamp_orange, Lamp *lamp_blue, Lamp *lamp_green, Heating *heating_upper_upper, Heating *heating_upper_lower, Heating *heating_lower_upper, Heating *heating_lower_lower, HydraulicAggregate *aggregate);
+  OperatingMode* operating_mode();
   Compactor* compactor();
   Lamp* lamp_orange();
   Lamp* lamp_blue();
@@ -37,6 +39,7 @@ public:
   void set_state_emergency_stop();
 */
 private:
+  OperatingMode *_operating_mode;
 	Compactor *_compactor;
   Lamp *_lamp_orange;
   Lamp *_lamp_blue;

@@ -112,3 +112,12 @@ void RemoteControlService::writeParamsToSerial() {
   // Serial.print(";331=");
   // Serial.println(_config->get_compactor_endposition_close_status());
 }
+
+void RemoteControlService::writeStatesToSerial() {
+  Serial.print("400=");
+  Serial.print(_machine->operating_mode()->state());
+  Serial.print(";401=");
+  Serial.print(_machine->aggregate()->state());
+  Serial.print(";402=");
+  Serial.println(_machine->compactor()->state());
+}
