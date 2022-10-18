@@ -98,23 +98,25 @@ void RemoteControlService::trigger(int command_id){
 }
 
 void RemoteControlService::writeParamsToSerial() {
-  Serial.print("511=");
+  Serial.print("11=");
   Serial.print(_config->get_heating_nominal_temperature_in_celsius(1));
-  Serial.print(";512=");
-  Serial.println(_config->get_heating_nominal_temperature_in_celsius(2));
-  Serial.print("513=");
+  Serial.print(";12=");
+  Serial.print(_config->get_heating_nominal_temperature_in_celsius(2));
+  Serial.print(";13=");
   Serial.print(_config->get_heating_nominal_temperature_in_celsius(3));
-  Serial.print(";514=");
-  Serial.println(_config->get_heating_nominal_temperature_in_celsius(4));
+  Serial.print(";14=");
+  Serial.print(_config->get_heating_nominal_temperature_in_celsius(4));
+  Serial.print("\n");
 
-  Serial.print("521=");
+  Serial.print("21=");
   Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(1));
-  Serial.print(";522=");
-  Serial.println(_config->get_heating_nominal_cooling_temperature_in_celsius(2));
-  Serial.print("523=");
+  Serial.print(";22=");
+  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(2));
+  Serial.print(";23=");
   Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(3));
-  Serial.print(";524=");
-  Serial.println(_config->get_heating_nominal_cooling_temperature_in_celsius(4));
+  Serial.print(";24=");
+  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(4));
+  Serial.print("\n");
 
   // Serial.print("330=");
   // Serial.print(_config->get_compactor_endposition_open_status());
@@ -126,7 +128,11 @@ void RemoteControlService::writeStatesToSerial() {
   Serial.print("400=");
   Serial.print(_machine->operating_mode()->state());
   Serial.print(";401=");
-  Serial.println(_machine->aggregate()->state());
+  Serial.print(_machine->aggregate()->state());
+  Serial.print(";402=");
+  Serial.print(_machine->compactor()->state());
+  Serial.print("\n");
+
   //Serial.print(";402=");
   //Serial.println(_machine->compactor()->state());
 }

@@ -24,16 +24,16 @@ value_url = "http://localhost:8000/driver_api/config/value/"
 async def read_and_print(aioserial_instance: aioserial.AioSerial):
     while True:
         try:
-            # print((await aioserial_instance.read_async()).decode(errors='ignore'), end='', flush=True)
-            data: bytes = await aioserial_instance.read_until_async(b"\n")
-            #print(data.decode('utf-8', errors='ignore'), end='', flush=True)
-            #print(data_string, end='', flush=True)
-            #data_string = data.decode('utf-8', errors='ignore')
-            #print(data_string)
-            if b'\n' in data:
-                data_string = data.decode('utf-8', errors='ignore')
-                if ";" in data_string:
-                    async with aiohttp.ClientSession() as session:
+            async with aiohttp.ClientSession() as session:
+                # print((await aioserial_instance.read_async()).decode(errors='ignore'), end='', flush=True)
+                data: bytes = await aioserial_instance.read_until_async(b"\n")
+                #print(data.decode('utf-8', errors='ignore'), end='', flush=True)
+                #print(data_string, end='', flush=True)
+                #data_string = data.decode('utf-8', errors='ignore')
+                #print(data_string)
+                if b'\n' in data:
+                    data_string = data.decode('utf-8', errors='ignore')
+                    if ";" in data_string:
                         for d in data_string.split(";"):
                             #print(d.split("="))
                             ddd = d.split("=")
@@ -49,8 +49,8 @@ async def read_and_print(aioserial_instance: aioserial.AioSerial):
                                 #print(resp.status)
                                 pass
                                 #print(await resp.text())                    
-                else:
-                    print(data_string)
+                    else:
+                        print(data_string)
         except Exception as e:
             print(e)
             return
@@ -105,7 +105,7 @@ async def pull_and_push(aioserial_instance):
 
 
 async def write_and_print(aioserial_instance: aioserial.AioSerial):
-    await asyncio.sleep(15)
+    await asyncio.sleep(5)
     while True:
     #await asyncio.sleep(2)
     #print("send param")
@@ -121,17 +121,33 @@ async def write_and_print(aioserial_instance: aioserial.AioSerial):
         byte_array = marker.to_bytes(1, 'big')
         byte_array += cmd_id.to_bytes(2, 'big')
         byte_array += bytes("\n", 'utf-8')
-        print(byte_array)
+        print("To machine: cmd {}".format(cmd_id))
         await aioserial_instance.writelines_async([byte_array])
-        await asyncio.sleep(5)
+        await asyncio.sleep(3)
+
+        cmd_id = 34
+        byte_array = marker.to_bytes(1, 'big')
+        byte_array += cmd_id.to_bytes(2, 'big', signed=False)
+        byte_array += bytes("\n", 'utf-8')
+        print("To machine: cmd {}".format(cmd_id))
+        await aioserial_instance.writelines_async([byte_array])
+        await asyncio.sleep(3)
+
+        cmd_id = 33
+        byte_array = marker.to_bytes(1, 'big')
+        byte_array += cmd_id.to_bytes(2, 'big', signed=False)
+        byte_array += bytes("\n", 'utf-8')
+        print("To machine: cmd {}".format(cmd_id))
+        await aioserial_instance.writelines_async([byte_array])
+        await asyncio.sleep(3)
 
         cmd_id = 42
         byte_array = marker.to_bytes(1, 'big')
         byte_array += cmd_id.to_bytes(2, 'big', signed=False)
         byte_array += bytes("\n", 'utf-8')
-        print(byte_array)
+        print("To machine: cmd {}".format(cmd_id))
         await aioserial_instance.writelines_async([byte_array])
-        await asyncio.sleep(5)
+        await asyncio.sleep(3)
 
     """cmd_id = 15
     byte_array = marker.to_bytes(1, 'big')
@@ -159,10 +175,10 @@ def _as_bytes(string_value):
 
 
 async def main():
-    aioserial_instance = aioserial.AioSerial(port='COM7')
+    aioserial_instance = aioserial.AioSerial(port='COM6')
     a, b = await asyncio.gather(
         read_and_print(aioserial_instance),
-        write_and_print(aioserial_instance),
+        #write_and_print(aioserial_instance),
         #pull_and_push(aioserial_instance)
     )
     print(a, b)

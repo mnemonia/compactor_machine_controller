@@ -23,17 +23,30 @@ void Configuration::apply(int key, int value) {
 		case 100:
 			_stamp_duration_in_s = value;
 			break;
-		case 511:
+		case 11:
+		    digitalWrite(13, HIGH);
 			_heating_upper_upper_nominal_temperature_in_celsius = value;
 			break;
-		case 512:
+		case 12:
 			_heating_upper_lower_nominal_temperature_in_celsius = value;
 			break;
-		case 513:
+		case 13:
 			_heating_lower_upper_nominal_temperature_in_celsius = value;
 			break;
-		case 514:
+		case 14:
 			_heating_lower_lower_nominal_temperature_in_celsius = value;
+			break;
+		case 21:
+			_heating_upper_upper_nominal_cooling_temperature_in_celsius = value;
+			break;
+		case 22:
+			_heating_upper_lower_nominal_cooling_temperature_in_celsius = value;
+			break;
+		case 23:
+			_heating_lower_upper_nominal_cooling_temperature_in_celsius = value;
+			break;
+		case 24:
+			_heating_lower_lower_nominal_cooling_temperature_in_celsius = value;
 			break;
 	}
 }

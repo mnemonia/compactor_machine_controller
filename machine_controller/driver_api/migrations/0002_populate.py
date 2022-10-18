@@ -4,7 +4,7 @@ from django.db import migrations, models
 
 PARAMS = [
     {
-        "param_id": 511,
+        "param_id": 11,
         "index": 1,
         "label": "Temperatur oben oben",
         "device_type": "ACTOR",
@@ -13,7 +13,7 @@ PARAMS = [
         "value": 22,
     },
     {
-        "param_id": 512,
+        "param_id": 12,
         "index": 1,
         "label": "Temperatur oben unten",
         "device_type": "ACTOR",
@@ -22,7 +22,7 @@ PARAMS = [
         "value": 22,
     },
     {
-        "param_id": 513,
+        "param_id": 13,
         "index": 1,
         "label": "Temperatur unten oben",
         "device_type": "ACTOR",
@@ -31,7 +31,7 @@ PARAMS = [
         "value": 22,
     },
     {
-        "param_id": 514,
+        "param_id": 14,
         "index": 1,
         "label": "Temperatur unten unten",
         "device_type": "ACTOR",
@@ -41,7 +41,7 @@ PARAMS = [
     },
 
     {
-        "param_id": 521,
+        "param_id": 21,
         "index": 1,
         "label": "Kuehlung oben oben",
         "device_type": "ACTOR",
@@ -50,7 +50,7 @@ PARAMS = [
         "value": 19,
     },
     {
-        "param_id": 522,
+        "param_id": 22,
         "index": 1,
         "label": "Kuehlung oben unten",
         "device_type": "ACTOR",
@@ -59,7 +59,7 @@ PARAMS = [
         "value": 19,
     },
     {
-        "param_id": 523,
+        "param_id": 23,
         "index": 1,
         "label": "Kuehlung unten oben",
         "device_type": "ACTOR",
@@ -68,7 +68,7 @@ PARAMS = [
         "value": 19,
     },
     {
-        "param_id": 524,
+        "param_id": 24,
         "index": 1,
         "label": "Kuehlung unten unten",
         "device_type": "ACTOR",

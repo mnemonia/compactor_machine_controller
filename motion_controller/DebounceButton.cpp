@@ -26,10 +26,9 @@ void DebounceButton::check() {
   // int pin_state = digitalRead(_di_pin);
   int sensor_value = analogRead(_di_pin);
   int output_value = map(sensor_value, 0, 1023, 0, 255);
-
-  int pin_state = 0;
+  int pin_state = LOW;
   if (output_value > 253) {
-    pin_state = 1;
+    pin_state = HIGH;
   }
 
   // check to see if you just pressed the button
@@ -40,6 +39,7 @@ void DebounceButton::check() {
   if (pin_state != _state_last_read) {
     // reset the debouncing timer
     _last_debounce_time = millis();
+    // Serial.println(pin_state);
   }
 
   if ((millis() - _last_debounce_time) > _debounce_delay) {
@@ -51,13 +51,13 @@ void DebounceButton::check() {
       _button_state = pin_state;
 
       if (_button_state == HIGH) {
-        //Serial.print("button ");
-        //Serial.print(_id);
-        //Serial.println(" down");
+        Serial.print("DOWN button ");
+        Serial.println(_id);
         _up_command->cancel();
         _down_command->execute();
       } else {
-        //_debug_service->info("button " + _id + " up");
+        Serial.print("UP button ");
+        Serial.println(_id);
         _down_command->cancel();
         _up_command->execute();
       }

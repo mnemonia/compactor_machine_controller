@@ -35,7 +35,7 @@ unsigned long _max_slow_tick = 300;
 unsigned long _current_param_readout_tick = 0;
 unsigned long _max_param_readout_tick = 900;
 unsigned long _current_state_readout_tick = 0;
-unsigned long _max_state_readout_tick = 100;
+unsigned long _max_state_readout_tick = 150;
 DebugService *debug_service;
 CommunicationService *communication_service;
 Machine *machine;
@@ -43,29 +43,29 @@ RemoteControlService *remote_control_service;
 IoInitializationService *io_initialization_service;
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
   Serial.flush();
   Serial.setTimeout(5);
-  Serial.println("Kessler Compactor Motion Controller");
-  Serial.println("starting...");
+  //Serial.println("Kessler Compactor Motion Controller");
+  //Serial.println("starting...");
 
   io_config = new IoConfiguration();
   config = new Configuration();
   compactor = new Compactor(config, io_config);
   debug_service = new DebugService();
 
-  Serial.println("init hydraulics");
+  //Serial.println("init hydraulics");
   aggregate = new HydraulicAggregate(1, io_config->pin_aggregate());
 
-  Serial.println("init lamps");
+  //Serial.println("init lamps");
   lamp_orange = new Lamp(1, io_config->pin_lamp_orange(), debug_service);
   lamp_blue = new Lamp(2, io_config->pin_lamp_blue(), debug_service);
   lamp_green = new Lamp(3, io_config->pin_lamp_green(), debug_service);
 
-  Serial.println("init heating");
+  //Serial.println("init heating");
   heating_upper_upper = new Heating(1, io_config->pin_heating_upper_upper_temperature_sensor(), io_config->pin_heating_upper_upper_oil_valve(), io_config->pin_heating_upper_upper_water_valve(), config);
   heating_upper_lower = new Heating(2, io_config->pin_heating_upper_lower_temperature_sensor(), io_config->pin_heating_upper_lower_oil_valve(), io_config->pin_heating_upper_lower_water_valve(), config);
   heating_lower_upper = new Heating(3, io_config->pin_heating_lower_upper_temperature_sensor(), io_config->pin_heating_lower_upper_oil_valve(), io_config->pin_heating_lower_upper_water_valve(), config);
@@ -73,26 +73,26 @@ void setup() {
 
   operating_mode = new OperatingMode();
 
-  Serial.println("init machine");
+  //Serial.println("init machine");
   machine = new Machine(operating_mode, compactor, lamp_orange, lamp_blue, lamp_green, heating_upper_upper, heating_upper_lower, heating_lower_upper, heating_lower_lower, aggregate);
 
   io_initialization_service = new IoInitializationService(machine);
 
-  Serial.println("init remote interface");
+  //Serial.println("init remote interface");
   remote_control_service = new RemoteControlService(config, machine);
   communication_service = new CommunicationService(config, remote_control_service);
 
   machine_behavior = new MachineBehavior();
 
-  Serial.println("init conrtol panel");
+  //Serial.println("init conrtol panel");
   command_panel = new CommandPanel(machine_behavior, machine, config, io_config, operating_mode, debug_service);
 
-  Serial.println("init emergency stop");
+  //Serial.println("init emergency stop");
   emergency_stop = new EmergencyStop(machine_behavior, io_config);
 
  // io_initialization_service->initialize();
   
-  Serial.println("ready");
+  //Serial.println("ready");
   Serial.flush();
   //debug_service->info("ready");
   //lamp_blue->turn_on();
@@ -128,7 +128,7 @@ void _run_slow_tick() {
 
 void _run_param_readout_tick() {
   remote_control_service->writeParamsToSerial();
-  //remote_control_service->writeStatesToSerial();
+  // remote_control_service->writeStatesToSerial();
 }
 
 void _run_state_readout_tick() {

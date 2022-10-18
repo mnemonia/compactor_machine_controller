@@ -18,9 +18,9 @@ void CommunicationService::update(){
   if (!_is_enabled) { return; }
   
   int index;
-  int param_id;
-  int value;
-  int command_id;
+  uint16_t param_id;
+  uint16_t value;
+  uint16_t command_id;
 
   const int BUFFER_SIZE = 100;
   char buf[BUFFER_SIZE];
@@ -29,7 +29,6 @@ void CommunicationService::update(){
   if (rlen <= 0) {
     return;
   }
-
   if (buf[0] == 0x01) {
     param_id = 0;
     param_id = buf[1] << 8;

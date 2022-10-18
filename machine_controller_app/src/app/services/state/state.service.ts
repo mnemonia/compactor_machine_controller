@@ -13,7 +13,7 @@ export class StateService {
 
   public getStates(): Observable<Param[]> {
     const url = "http://localhost:8000/app_api/state/";
-    return interval(1000).pipe(
+    return interval(500).pipe(
       switchMap(() => this.databaseService.get(url))
     );
   }
