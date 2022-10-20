@@ -19,4 +19,15 @@ export class ParamService {
     ); */
     return this.databaseService.get(url);
   }
+
+  public apply(params: Param[]) {
+    const url = "http://localhost:8000/app_api/param/";
+    params.forEach(p => {
+      const url2 = url + p.param_id + "/";
+      this.databaseService.put(url2, p).subscribe(
+        (res) => console.log(res)
+      );
+    });
+    
+  }
 }

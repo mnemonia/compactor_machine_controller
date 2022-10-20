@@ -18,7 +18,7 @@ class StateList(generics.ListCreateAPIView):
     serializer_class = ParamSerializer
 
 class ParamList(generics.ListCreateAPIView):
-    queryset = Param.objects.filter(device_type="ACTOR").all()
+    queryset = Param.objects.filter(device_type="ACTOR", param_type="NOMINAL").all()
     serializer_class = ParamSerializer
     # """
     # List all snippets, or create a new snippet.

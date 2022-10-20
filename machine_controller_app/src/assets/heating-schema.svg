@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="heating-schema.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="6.4070146"
+     inkscape:cx="320.82025"
+     inkscape:cy="131.73062"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;fill:#ffff00;fill-opacity:0.607843;stroke-width:0.104532;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;stop-color:#000000;stop-opacity:1"
+       id="heating_upper_upper"
+       width="42.699947"
+       height="32.499859"
+       x="113.56368"
+       y="9.4567547"
+       inkscape:label="heating_upper_upper" />
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;fill:#ff0000;fill-opacity:1;stroke-width:0.061875;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;stop-color:#000000;stop-opacity:1"
+       id="rect1723"
+       width="87.216904"
+       height="2.9733038"
+       x="64.290001"
+       y="16.443441" />
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;vector-effect:none;fill:#ff0000;fill-opacity:1;stroke-width:0.061875;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;-inkscape-stroke:none;stop-color:#000000"
+       id="rect1723-0"
+       width="87.216904"
+       height="2.9733038"
+       x="64.287109"
+       y="34.641598" />
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;vector-effect:none;fill:#ff0000;fill-opacity:1;stroke-width:0.0304651;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;-inkscape-stroke:none;stop-color:#000000"
+       id="rect1723-0-9"
+       width="21.143488"
+       height="2.9733038"
+       x="-37.594608"
+       y="151.47331"
+       transform="rotate(-90)" />
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;fill:#0000ff;fill-opacity:1;stroke-width:0.0600462;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;stop-color:#000000"
+       id="rect1723-3"
+       width="82.137512"
+       height="2.9733038"
+       x="64.225349"
+       y="24.043259" />
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;fill:#0000ff;fill-opacity:1;stroke-width:0.0600462;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;stop-color:#000000"
+       id="rect1723-0-0"
+       width="82.137512"
+       height="2.9733038"
+       x="64.22245"
+       y="30.599739" />
+    <rect
+       style="font-variation-settings:normal;opacity:0.607477;fill:#0000ff;fill-opacity:1;stroke-width:0.0205074;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.98;stop-color:#000000"
+       id="rect1723-0-9-0"
+       width="9.5806398"
+       height="2.9733038"
+       x="-33.63158"
+       y="146.32962"
+       transform="rotate(-90)" />
+  </g>
+</svg>

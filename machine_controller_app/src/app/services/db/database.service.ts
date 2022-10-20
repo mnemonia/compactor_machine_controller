@@ -15,4 +15,12 @@ export class DatabaseService {
     });
     return this.httpClient.get(url, { headers: httpHeaders, responseType: "json" });
   }
+
+  public put(url, data): Observable<any> {
+    const httpHeaders: HttpHeaders = new HttpHeaders({
+      "Content-Type": 'application/json'
+    });
+    return this.httpClient.put(url, data, { headers: httpHeaders, responseType: "json" });
+  }
+
 }

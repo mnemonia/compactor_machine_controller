@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'state-overview',
     loadChildren: () => import('./pages/state-overview/state-overview.module').then( m => m.StateOverviewPageModule)
   },
+  {
+    path: 'param',
+    loadChildren: () => import('./pages/param/param.module').then( m => m.ParamPageModule)
+  },
 ];
 
 @NgModule({

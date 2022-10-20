@@ -9,6 +9,7 @@ export class AppComponent {
     { title: 'Temperierung', url: 'heating-overview', icon: 'flame' },
     { title: 'Sensoren', url: 'sensor-overview', icon: 'pulse' },
     { title: 'Zustände', url: 'state-overview', icon: 'eye' },
+    { title: 'Parameter', url: 'param', icon: 'options' },
   ];
   constructor() {}
 }

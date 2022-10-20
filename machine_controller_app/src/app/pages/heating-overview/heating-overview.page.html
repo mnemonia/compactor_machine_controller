@@ -5,13 +5,173 @@
 </ion-header>
 
 <ion-content>
-<ion-list>
-  <ion-item *ngFor="let param of params">
-    <ion-label>{{param.label}}</ion-label>
-    <ion-input slot="end" class="input-field" type="number" inputmode="numeric" max="999" [(ngModel)]="param.value"></ion-input>
-  </ion-item>
-  <ion-button expand="full">
-    Ok
-  </ion-button>
-</ion-list>
+  <ion-card>
+    <ion-card-header>Obere Etage</ion-card-header>
+    <ion-card-content>
+      <ion-card>
+        <ion-card-header>Oben</ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="heating-params">
+              <ion-col>
+                <ion-label>Heizung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="heating_param_oben_oben.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="heating_param_oben_oben.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="cooling-params">
+              <ion-col>
+                <ion-label>Kühlung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="cooling_param_oben_oben.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="cooling_param_oben_oben.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>Unten</ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="heating-params">
+              <ion-col>
+                <ion-label>Heizung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="heating_param_oben_unten.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="heating_param_oben_unten.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="cooling-params">
+              <ion-col>
+                <ion-label>Kühlung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="cooling_param_oben_unten.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="cooling_param_oben_unten.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-item lines="none">
+        <ion-button slot="end" size="large" (click)="onSubmit($event)">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>  
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>Untere Etage</ion-card-header>
+    <ion-card-content>
+      <ion-card>
+        <ion-card-header>Oben</ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="heating-params">
+              <ion-col>
+                <ion-label>Heizung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="heating_param_unten_oben.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="heating_param_unten_oben.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="cooling-params">
+              <ion-col>
+                <ion-label>Kühlung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="cooling_param_unten_oben.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="cooling_param_unten_oben.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>      
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-header>Unten</ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row class="heating-params">
+              <ion-col>
+                <ion-label>Heizung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="heating_param_unten_unten.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="heating_param_unten_unten.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+            <ion-row class="cooling-params">
+              <ion-col>
+                <ion-label>Kühlung</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Sollwert in °C</ion-label>
+                <ion-input class="input-field" type="number" inputmode="numeric" max="200"
+                  [(ngModel)]="cooling_param_unten_unten.value"></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-label position="floating">Istwert in °C</ion-label>
+                <ion-input class="actual-value-field" disabled="true" [(ngModel)]="cooling_param_unten_unten.value">
+                </ion-input>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-item lines="none">
+        <ion-button slot="end" size="large" (click)="onSubmit($event)">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>  
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

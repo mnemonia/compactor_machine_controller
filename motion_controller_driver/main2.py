@@ -2,6 +2,10 @@ import asyncio
 import serial_asyncio
 from datetime import datetime
 import requests
+import json
+import aiohttp
+
+loop = asyncio.get_event_loop()
 
 
 apikey = "abcf"
@@ -40,15 +44,12 @@ class ProtocolHandler:
         self._INVALUD = self.__create_invalid()
 
     def parse_values(self, values_string):
-        values = list()
-        #if "\n" in values_string:
         values_string = values_string.replace("\r", ";")
         values_string = values_string.replace("\n", ";")
-        # print(values_string)
-        values.extend(self.__parse_values(values_string))
-        #else:
-        #    values.append(self.__parse_value(values_string))
-        return values
+        #print("------------------------------------------")
+        #print(values_string)
+        #print("==========================================")
+        return self.__parse_values(values_string)
 
     def __parse_values(self, values_string):
         values = list()
@@ -95,64 +96,47 @@ class ProtocolHandler:
         return self._INVALUD
 
 
-class Writer(asyncio.Protocol):
-    def connection_made(self, transport):
-        """Store the serial transport and schedule the task to send data.
-        """
-        self.transport = transport
-        print('Writer connection created')
-        asyncio.ensure_future(self.send())
-        print('Writer.send() scheduled')
-
-    def connection_lost(self, exc):
-        print('Writer closed')
-
-    async def send(self):
-        """Send four newline-terminated messages, one byte at a time.
-        """
-        message = b'foo\nbar\nbaz\nqux\n'
-        for b in message:
-            await asyncio.sleep(5)
-            self.transport.serial.write(bytes([b]))
-            print(f'Writer sent: {bytes([b])}')
-        self.transport.close()
-
 class DataBeat:
     def get_nominal_values(self):
+        r = requests.get("http://localhost:8000/driver_api/config/value/")
+        params = r.json()
         values = list()
-        values.append({
-            "param_id": 11,
-            "value": 24,
-        })
-        values.append({
-            "param_id": 12,
-            "value": 25,
-        })
-        values.append({
-            "param_id": 13,
-            "value": 26,
-        })
-        values.append({
-            "param_id": 14,
-            "value": 27,
-        })
-        values.append({
-            "param_id": 21,
-            "value": 15,
-        })
-        values.append({
-            "param_id": 22,
-            "value": 16,
-        })
-        values.append({
-            "param_id": 23,
-            "value": 17,
-        })
-        values.append({
-            "param_id": 24,
-            "value": 18,
-        })
+        for param in params:
+            values.append({
+                "param_id": param["param_id"],
+                "value": param["value"],
+            })
+
+        # values.append({
+        #     "param_id": 12,
+        #     "value": 25,
+        # })
+        # values.append({
+        #     "param_id": 13,
+        #     "value": 26,
+        # })
+        # values.append({
+        #     "param_id": 14,
+        #     "value": 27,
+        # })
+        # values.append({
+        #     "param_id": 21,
+        #     "value": 15,
+        # })
+        # values.append({
+        #     "param_id": 22,
+        #     "value": 16,
+        # })
+        # values.append({
+        #     "param_id": 23,
+        #     "value": 17,
+        # })
+        # values.append({
+        #     "param_id": 24,
+        #     "value": 18,
+        # })
         return values
+
 
 class OutputProtocol(asyncio.Protocol):
     def __init__(self) -> None:
@@ -190,23 +174,37 @@ class OutputProtocol(asyncio.Protocol):
         data_string = data.decode('utf-8', errors='ignore')
         #print('data received', data_string)
         values = self._protocol_handler.parse_values(data_string)
+        changed_values = list()
         for value in values:
-            print(value["param_id"])
+            # print(value["param_id"])
             if self.__cache.has_value_changed(value):
-                #print(value)
-                r = requests.put('{}{}/'.format(url, value["param_id"]), data=value)
-                print(r)
-                pass
+                changed_values.append(value)
+        #if len(changed_values) > 0:
+        #    r = requests.put(url, data=json.dumps(changed_values), headers=headers)
+        #    print(r.status_code)
+        # async def runit(changes):
+        #     async with aiohttp.ClientSession() as session:
+        #         for change in changes:
+        #             print(change["param_id"])
+        #             async with session.put("{}{}/".format(url, change["param_id"]), headers=headers, json=change) as resp:
+        #                 print(str(resp.status) + ": " + str(change["param_id"]) + "=" + str(change["value"]))
+        #                 pass
 
-        #self.transport.close()
-        self.send()
+        # loop.create_task(runit(changed_values))
+
+        if len(changed_values) > 0:
+            for value in changed_values:
+                print(value)
+                r = requests.put('{}{}/'.format(url, value["param_id"]), data=value)
+               # print(str(r.status_code) + " " + str(value["param_id"]) + "=" + str(value["value"]))
+
+            self.send()
 
     def connection_lost(self, exc):
         print('port closed')
         self.transport.loop.stop()
 
 
-loop = asyncio.get_event_loop()
 reader = serial_asyncio.create_serial_connection(loop, OutputProtocol, 'COM7', baudrate=115200)
 transport, protocol = loop.run_until_complete(reader)
 loop.run_forever()

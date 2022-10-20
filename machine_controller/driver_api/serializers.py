@@ -13,4 +13,4 @@ class ConfigParamValueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Param
         fields = ['param_id', 'value']
-        read_only_fields = fields
+        # read_only_fields = fields
