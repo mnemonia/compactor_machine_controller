@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from driver_api.models import Param
-from driver_api.serializers import ParamSerializer
+from driver_api.models import Command, Param
+from driver_api.serializers import CommandSerializer, ParamSerializer
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -39,3 +39,8 @@ class ParamDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Param.objects.all()
     serializer_class = ParamSerializer
     lookup_field = "param_id"
+
+class CommandDetail(generics.RetrieveUpdateAPIView):
+    queryset = Command.objects.filter()
+    serializer_class = CommandSerializer
+    lookup_field = "command_id"

@@ -125,6 +125,78 @@ PARAMS = [
 
 ]
 
+COMMANDS = [
+    {
+        "command_id": 11,
+        "label": "Orange Ein",
+        "component_type": "LAMP",
+    },
+    {
+        "command_id": 12,
+        "label": "Blau Ein",
+        "component_type": "LAMP",
+    },
+    {
+        "command_id": 13,
+        "label": "Grün Ein",
+        "component_type": "LAMP",
+    },
+    {
+        "command_id": 14,
+        "label": "Orange Aus",
+        "component_type": "LAMP",
+    },
+    {
+        "command_id": 15,
+        "label": "Blau Aus",
+        "component_type": "LAMP",
+    },
+    {
+        "command_id": 16,
+        "label": "Grün Aus",
+        "component_type": "LAMP",
+    },
+    {
+        "command_id": 29,
+        "label": "Stop",
+        "component_type": "COMPACTOR",
+    },
+    {
+        "command_id": 30,
+        "label": "Öffnen",
+        "component_type": "COMPACTOR",
+    },
+    {
+        "command_id": 31,
+        "label": "Schliessen",
+        "component_type": "COMPACTOR",
+    },
+    {
+        "command_id": 33,
+        "label": "Ein",
+        "component_type": "AGGREGATE",
+    },
+    {
+        "command_id": 34,
+        "label": "Aus",
+        "component_type": "AGGREGATE",
+    },
+    {
+        "command_id": 40,
+        "label": "Einrichten",
+        "component_type": "OPERATING_MODE",
+    },
+    {
+        "command_id": 41,
+        "label": "Manuell",
+        "component_type": "OPERATING_MODE",
+    },
+    {
+        "command_id": 42,
+        "label": "Automatik",
+        "component_type": "OPERATING_MODE",
+    },
+]
 
 def create_params(apps, schema_editor):
     # We can't import the Person model directly as it may be a newer
@@ -142,6 +214,18 @@ def create_params(apps, schema_editor):
         p.save()
 
 
+def create_commands(apps, schema_editor):
+    # We can't import the Person model directly as it may be a newer
+    # version than this migration expects. We use the historical version.
+    Command = apps.get_model('driver_api', 'Command')
+    for cmd_js in COMMANDS:
+        c = Command()
+        c.command_id = cmd_js["command_id"]
+        c.label = cmd_js["label"]
+        c.component_type = cmd_js["component_type"]
+        c.must_run = False
+        c.save()
+
 class Migration(migrations.Migration):
 
     initial = False
@@ -152,4 +236,5 @@ class Migration(migrations.Migration):
 
     operations = [
        migrations.RunPython(create_params),
+       migrations.RunPython(create_commands),
     ]

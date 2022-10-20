@@ -5,3 +5,8 @@ export class Param {
     label: string;
     timestamp: string;
 }
+
+export class Command {
+    command_id: number;
+    must_run: boolean;
+}

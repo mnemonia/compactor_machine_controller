@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Param
+from .models import Command, Param
 
 
 class ParamSerializer(serializers.HyperlinkedModelSerializer):
@@ -14,3 +14,8 @@ class ConfigParamValueSerializer(serializers.ModelSerializer):
         model = Param
         fields = ['param_id', 'value']
         # read_only_fields = fields
+
+class CommandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Command
+        fields = ['command_id','must_run']

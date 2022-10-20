@@ -51,3 +51,31 @@ class Param(models.Model):
         default=NOMINAL,
     )
     timestamp = models.DateTimeField(default=timezone.now())
+
+
+class Command(models.Model):
+    OPERATING_MODE = 'OPERATING_MODE'
+    HEATING = 'HEATING'
+    AGGREGATE = 'AGGREGATE'
+    LAMP = 'LAMP'
+    VALVE = 'VALVE'
+    COMPACTOR = 'COMPACTOR'
+    COMPONENT_TYPE_CHOICES =  [
+        (OPERATING_MODE, 'Betriebsart'),
+        (HEATING, 'Heizung'),
+        (AGGREGATE, 'Hydraulik Aggregat'),
+        (LAMP, 'Lampe'),
+        (VALVE, 'Ventil'),
+        (COMPACTOR, 'Presse'),
+    ]
+
+    id = models.AutoField(primary_key=True)
+    command_id = models.IntegerField(unique=True)
+    label = models.CharField(max_length=300)
+    must_run = models.BooleanField(default=False)    
+    component_type = models.CharField(
+        max_length=44,
+        choices=COMPONENT_TYPE_CHOICES,
+        default=HEATING,
+    )
+    timestamp = models.DateTimeField(default=timezone.now())

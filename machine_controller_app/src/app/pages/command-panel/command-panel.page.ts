@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommandService } from 'src/app/services/command/command.service';
 import { Param } from '../../model/domain';
 import { StateService } from '../../services/state/state.service';
 
@@ -11,7 +12,7 @@ export class CommandPanelPage implements OnInit {
   params: Param[] = [];
   subsc;
 
-  constructor(private stateService: StateService) { }
+  constructor(private stateService: StateService, private commandService: CommandService) { }
 
   ngOnInit() {
     this.subsc = this.stateService.getStates().subscribe(
@@ -26,6 +27,7 @@ export class CommandPanelPage implements OnInit {
 
   send(command_id: number) {
     console.log("command_id", command_id);
+    this.commandService.execute(command_id);
   }
 
   ionViewDidLeave() {

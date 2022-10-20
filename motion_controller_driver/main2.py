@@ -18,6 +18,7 @@ body = {
 }
 url = "http://localhost:8000/driver_api/param/"
 value_url = "http://localhost:8000/driver_api/config/value/"
+command_url = "http://localhost:8000/driver_api/command/"
 
 
 class ValueCache:
@@ -97,6 +98,11 @@ class ProtocolHandler:
 
 
 class DataBeat:
+
+    def get_commands(self):
+        r = requests.get(command_url)
+        return r.json()
+
     def get_nominal_values(self):
         r = requests.get("http://localhost:8000/driver_api/config/value/")
         params = r.json()
@@ -154,13 +160,27 @@ class OutputProtocol(asyncio.Protocol):
         byte_array += bytes("\n", 'utf-8')
         return byte_array
 
+    @staticmethod
+    def __to_byte_command(command_id):
+        marker = 2
+        byte_array = marker.to_bytes(1, 'big')
+        byte_array += command_id.to_bytes(2, 'big')
+        byte_array += bytes("\n", 'utf-8')
+        return byte_array
+
 
     def send(self):
         for n in self.__beat.get_nominal_values():
             byte_array = OutputProtocol.__to_byte_array(n["param_id"], n["value"])
-            #print("To machine: {}={}".format(n["param_id"], n["value"]))
            # print(byte_array)
             self.transport.write(byte_array)
+        for cmd in self.__beat.get_commands():
+            print(cmd)
+            byte_array = OutputProtocol.__to_byte_command(cmd["command_id"])
+            print("Cmd to machine: {}".format(cmd["command_id"]))
+            self.transport.write(byte_array)
+            cmd["must_run"] = False
+            r = requests.put('{}{}/'.format(command_url, cmd["command_id"]), data=cmd)
 
     def connection_made(self, transport):
         self.transport = transport
