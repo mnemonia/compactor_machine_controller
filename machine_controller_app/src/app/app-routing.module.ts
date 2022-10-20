@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'param',
     loadChildren: () => import('./pages/param/param.module').then( m => m.ParamPageModule)
   },
+  {
+    path: 'command-panel',
+    loadChildren: () => import('./pages/command-panel/command-panel.module').then( m => m.CommandPanelPageModule)
+  },
 ];
 
 @NgModule({

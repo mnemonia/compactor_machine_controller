@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Kommandos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-badge color="medium">1</ion-badge>
+          <ion-label>&nbsp;Betriebsart</ion-label>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button (click)="send(40)">Einrichten</ion-button>
+          <ion-button (click)="send(41)">Manuell</ion-button>
+          <ion-button (click)="send(42)">Automatik</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-badge color="medium">1</ion-badge>
+          <ion-label>&nbsp;Presse</ion-label>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button (click)="send(30)">Öffnen</ion-button>
+          <ion-button (click)="send(31)">Schliessen</ion-button>
+          <ion-button (click)="send(29)">Stop</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-badge color="medium">1</ion-badge>
+          <ion-label>&nbsp;Temperierung</ion-label>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button (click)="send(400)">Heizen</ion-button>
+          <ion-button (click)="send(401)">Kühlen</ion-button>
+          <ion-button (click)="send(401)">Aus</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-badge color="medium">1</ion-badge>
+          <ion-label>&nbsp;Aggregat</ion-label>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button (click)="send(34)">Ein</ion-button>
+          <ion-button (click)="send(33)">Aus</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

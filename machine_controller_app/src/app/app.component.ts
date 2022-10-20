@@ -10,6 +10,7 @@ export class AppComponent {
     { title: 'Sensoren', url: 'sensor-overview', icon: 'pulse' },
     { title: 'Zustände', url: 'state-overview', icon: 'eye' },
     { title: 'Parameter', url: 'param', icon: 'options' },
+    { title: 'Kommandos', url: 'command-panel', icon: 'keypad' },    
   ];
   constructor() {}
 }
