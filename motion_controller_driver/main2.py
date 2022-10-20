@@ -174,8 +174,9 @@ class OutputProtocol(asyncio.Protocol):
             byte_array = OutputProtocol.__to_byte_array(n["param_id"], n["value"])
            # print(byte_array)
             self.transport.write(byte_array)
+
+    def send_cmd(self):
         for cmd in self.__beat.get_commands():
-            print(cmd)
             byte_array = OutputProtocol.__to_byte_command(cmd["command_id"])
             print("Cmd to machine: {}".format(cmd["command_id"]))
             self.transport.write(byte_array)
@@ -219,6 +220,8 @@ class OutputProtocol(asyncio.Protocol):
                # print(str(r.status_code) + " " + str(value["param_id"]) + "=" + str(value["value"]))
 
             self.send()
+        
+        self.send_cmd()
 
     def connection_lost(self, exc):
         print('port closed')
