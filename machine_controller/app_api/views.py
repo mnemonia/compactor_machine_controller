@@ -9,7 +9,7 @@ from rest_framework import status
 from rest_framework import generics
 
 class SensorList(generics.ListCreateAPIView):
-    queryset = Param.objects.filter(device_type="SENSOR").all()
+    queryset = Param.objects.filter(device_type="SENSOR", param_type="ACTUAL").all()
     serializer_class = ParamSerializer
 
 
