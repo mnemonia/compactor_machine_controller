@@ -115,3 +115,26 @@ int Heating::_rawToCelsius(int analog_sensor_data) {
   v = (v - 0.5) * 100.0;
   return v;
 }
+
+int Heating::state(){
+  return _current_state;
+}
+
+void Heating::next_state(){
+  switch(_current_state){
+    default:
+    case 0:
+      heat_up();
+      break;
+    case 1:
+      cool_down();
+      break;
+    case 2:
+      stop();
+      break;
+  }
+}
+
+int Heating::sensor_state() {
+  _temperature_sensor.state();
+}

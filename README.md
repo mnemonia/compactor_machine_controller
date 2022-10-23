@@ -1,6 +1,14 @@
 # compactor_machine_controller
 Control system for compactor machine
 
+```mermaid
+graph TD;
+    Machine_App-->Machine_Controller;
+    Machine_Controller-->Motion_Driver;
+    Motion_Driver-->Motion_Controller;
+    Motion_Controller-->IO;
+```
+
 # Digital Inputs
 
 # Analog Inputs

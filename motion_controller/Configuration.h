@@ -19,6 +19,9 @@ public:
 	int get_environment_actual_temperature_in_celsius(int heating_index);
 	void set_heating_actual_temperature_in_celsius(int heating_index, float value);
 	void set_environment_actual_temperature_in_celsius(int heating_index, float value);
+	int get_heating_temperature_sensor_status(int heating_index);
+	void set_heating_temperature_sensor_status(int heating_index, int status);
+
 private:
 	int _stamp_duration_in_s;
 	int _heating_upper_upper_nominal_temperature_in_celsius;
@@ -42,6 +45,11 @@ private:
 	int _environment_upper_lower_actual_temperature_in_celsius;
 	int _environment_lower_upper_actual_temperature_in_celsius;
 	int _environment_lower_lower_actual_temperature_in_celsius;
+
+	int _heating_upper_upper_temperature_sensor_status;
+	int _heating_upper_lower_temperature_sensor_status;
+	int _heating_lower_upper_temperature_sensor_status;
+	int _heating_lower_lower_temperature_sensor_status;
 
 };
 #endif

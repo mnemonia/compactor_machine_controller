@@ -3,12 +3,13 @@
 
 #include "Arduino.h"
 #include "Executable.h"
+#include "Stateable.h"
 #include "Configuration.h"
 #include "PIDController.h"
 #include "TemperatureSensor.h"
 
 
-class Heating: public Executable {
+class Heating: public Executable, Stateable {
 public:
 	Heating(int heating_index, int pin_temperature_sensor, int pin_oil_valve, int pin_water_valve, Configuration *config);
 	void heat_up();
@@ -18,6 +19,11 @@ public:
   void update();
   void execute();
   void tick();
+
+	int state();
+	void next_state();
+
+  int sensor_state();
 
 private:
   int _current_state;

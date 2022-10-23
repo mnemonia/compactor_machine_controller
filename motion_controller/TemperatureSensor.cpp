@@ -14,7 +14,7 @@ TemperatureSensor::TemperatureSensor(int index, Configuration *config):
       _i2c_address = I2C_ADDRESS_1;
       break;
     case 2:
-      _i2c_address = I2C_ADDRESS_1;
+      _i2c_address = I2C_ADDRESS_2;
       break;
     case 3:
       _i2c_address = I2C_ADDRESS_1;
@@ -28,8 +28,10 @@ TemperatureSensor::TemperatureSensor(int index, Configuration *config):
 
 void TemperatureSensor::turn_on(){
   if (! _mcp.begin(_i2c_address)) {
-      Serial.println("Sensor not found. Check wiring!");
-      while (1);
+    Serial.println("Sensor not found");
+    // while (1);
+    _current_state = 0;
+    return;
   }
 
   Serial.print("Found MCP9600 ");
@@ -39,7 +41,7 @@ void TemperatureSensor::turn_on(){
   _mcp.setADCresolution(MCP9600_ADCRESOLUTION_18);
   _mcp.setThermocoupleType(MCP9600_TYPE_J);
   _mcp.setFilterCoefficient(3);
-  _mcp.setAlertTemperature(1, 30);
+  _mcp.setAlertTemperature(1, 130);
   _mcp.configureAlert(1, true, true);  // alert 1 enabled, rising temp
   _mcp.enable(true);
 
@@ -54,6 +56,7 @@ void TemperatureSensor::turn_off(){
 }
 
 void TemperatureSensor::update(){
+  _config->set_heating_temperature_sensor_status(_index, _current_state);
   if (_current_state == 0) {
     return;
   }
@@ -67,4 +70,8 @@ void TemperatureSensor::execute(){
 }
 
 void TemperatureSensor::tick(){
+}
+
+int TemperatureSensor::state() {
+  return _current_state;
 }

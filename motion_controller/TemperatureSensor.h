@@ -11,9 +11,9 @@
 #include "Configuration.h"
 
 #define I2C_ADDRESS_1 (0x67)
-#define I2C_ADDRESS_2 (0x68)
-#define I2C_ADDRESS_3 (0x69)
-#define I2C_ADDRESS_4 (0x6A)
+#define I2C_ADDRESS_2 (0x66)
+#define I2C_ADDRESS_3 (0x65)
+#define I2C_ADDRESS_4 (0x64)
 
 class TemperatureSensor: public Executable {
 public:
@@ -24,6 +24,8 @@ public:
   void update();
   void execute();
   void tick();
+
+  int state();
 
 private:
   int _current_state;

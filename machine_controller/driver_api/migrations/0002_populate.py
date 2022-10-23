@@ -161,6 +161,42 @@ PARAMS = [
         "param_type": "STATE",
         "value": 0,
     },
+    {
+        "param_id": 414,
+        "index": 1,
+        "label": "OO Temp Sensor Status",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
+        "param_id": 415,
+        "index": 2,
+        "label": "OU Temp Sensor Status",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
+        "param_id": 416,
+        "index": 3,
+        "label": "UO Temp Sensor Status",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
+        "param_id": 417,
+        "index": 4,
+        "label": "UU Temp Sensor Status",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
 
 ]
 

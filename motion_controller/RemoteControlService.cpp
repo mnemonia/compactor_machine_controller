@@ -142,6 +142,15 @@ void RemoteControlService::writeStatesToSerial() {
   Serial.print(";402=");
   Serial.print(_machine->compactor()->state());
   Serial.print("\n");
+  Serial.print("414=");
+  Serial.print(_machine->heating_upper_upper()->sensor_state());
+  Serial.print(";415=");
+  Serial.print(_machine->heating_upper_lower()->sensor_state());
+  Serial.print(";416=");
+  Serial.print(_machine->heating_lower_upper()->sensor_state());
+  Serial.print(";417=");
+  Serial.print(_machine->heating_lower_lower()->sensor_state());
+  Serial.print("\n");
 
   //Serial.print(";402=");
   //Serial.println(_machine->compactor()->state());
