@@ -136,5 +136,5 @@ void Heating::next_state(){
 }
 
 int Heating::sensor_state() {
-  _temperature_sensor.state();
+  return _temperature_sensor.state();
 }
