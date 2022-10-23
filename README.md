@@ -1,4 +1,4 @@
-# compactor_machine_controller
+# Compactor Machine Controller
 Control system for compactor machine
 
 ```mermaid

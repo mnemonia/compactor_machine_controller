@@ -59,6 +59,7 @@ class ProtocolHandler:
                 if value_string == "":
                     continue
 
+                print(values_string)
                 values.append(self.__parse_value(value_string))
         else:
             #values.append(self.__parse_value(values_string))
@@ -80,6 +81,10 @@ class ProtocolHandler:
         if len(ddd) == 2:
             param_id = ddd[0]
             if len(param_id) > 3:
+                return self._INVALUD
+            if len(param_id) < 2:
+                return self._INVALUD
+            if int(param_id) < 10:
                 return self._INVALUD
 
             value = ddd[1]
