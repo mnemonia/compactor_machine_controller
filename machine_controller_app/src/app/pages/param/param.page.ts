@@ -15,7 +15,7 @@ export class ParamPage implements OnInit {
   ngOnInit() {
     this.paramService.getParams().subscribe(
       (params) => {
-        console.log(params);
+        //console.log(params);
         this.params = params;
       });
   }

@@ -17,7 +17,7 @@ export class StateOverviewPage implements OnInit {
   ngOnInit() {
     this.subsc = this.stateService.getStates().subscribe(
       (params) => {
-        console.log(params);
+        //console.log(params);
         this.params = params;
       },
       (err) => console.warn(err),

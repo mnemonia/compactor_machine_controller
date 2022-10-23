@@ -31,7 +31,7 @@ export class HeatingOverviewPage implements OnInit {
   ngOnInit() {
     this.subsc1 = this.paramService.getParams().subscribe(
       (params) => {
-        console.log(params);
+        //console.log(params);
         params.forEach(p => {
           if (p.param_id === 11) {
             this.heating_param_oben_oben = p;
@@ -58,7 +58,7 @@ export class HeatingOverviewPage implements OnInit {
 
     this.subsc2 = this.sensorService.getSensors().subscribe(
       (params) => {
-        console.warn("Sensors", params);
+        //console.warn("Sensors", params);
         params.forEach(p => {
           console.log(p);
           if (p.param_id === 15) {
