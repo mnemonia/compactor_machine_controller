@@ -187,7 +187,7 @@ PARAMS = [
     },
     {
         "param_id": 413,
-        "index": 1,
+        "index": 4,
         "label": "UU Temperierung Status",
         "device_type": "ACTOR",
         "component_type": "HEATING",
