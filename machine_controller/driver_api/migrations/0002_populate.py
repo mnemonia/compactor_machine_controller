@@ -76,9 +76,6 @@ PARAMS = [
         "param_type": "ACTUAL",
         "value": 22,
     },
-
-
-
     {
         "param_id": 21,
         "index": 1,
@@ -162,6 +159,42 @@ PARAMS = [
         "value": 0,
     },
     {
+        "param_id": 410,
+        "index": 1,
+        "label": "OO Temperierung Status",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
+        "param_id": 411,
+        "index": 2,
+        "label": "OU Temperierung Status",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
+        "param_id": 412,
+        "index": 3,
+        "label": "UO Temperierung Status",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
+        "param_id": 413,
+        "index": 1,
+        "label": "UU Temperierung Status",
+        "device_type": "ACTOR",
+        "component_type": "HEATING",
+        "param_type": "STATE",
+        "value": 0,
+    },
+    {
         "param_id": 414,
         "index": 1,
         "label": "OO Temp Sensor Status",
@@ -230,6 +263,66 @@ COMMANDS = [
         "command_id": 16,
         "label": "Grün Aus",
         "component_type": "LAMP",
+    },
+    {
+        "command_id": 17,
+        "label": "OO Aus",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 18,
+        "label": "OU Aus",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 19,
+        "label": "UO Aus",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 20,
+        "label": "UU Aus",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 21,
+        "label": "OO Heizen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 22,
+        "label": "OU Heizen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 23,
+        "label": "UO Heizen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 24,
+        "label": "UU Heizen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 25,
+        "label": "OO Kühlen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 26,
+        "label": "OU Kühlen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 27,
+        "label": "UO Kühlen",
+        "component_type": "HEATING",
+    },
+    {
+        "command_id": 28,
+        "label": "UU Kühlen",
+        "component_type": "HEATING",
     },
     {
         "command_id": 29,

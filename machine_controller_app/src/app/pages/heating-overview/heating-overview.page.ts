@@ -23,10 +23,13 @@ export class HeatingOverviewPage implements OnInit {
   heating_actual_unten_oben = new Param();
   heating_actual_unten_unten = new Param();
 
+  subsc1;
+  subsc2;
+
   constructor(private paramService: ParamService, private sensorService: SensorService) {}
 
   ngOnInit() {
-    this.paramService.getParams().subscribe(
+    this.subsc1 = this.paramService.getParams().subscribe(
       (params) => {
         console.log(params);
         params.forEach(p => {
@@ -53,7 +56,7 @@ export class HeatingOverviewPage implements OnInit {
       () => {}
     );
 
-    this.sensorService.getSensors().subscribe(
+    this.subsc2 = this.sensorService.getSensors().subscribe(
       (params) => {
         console.warn("Sensors", params);
         params.forEach(p => {
@@ -84,4 +87,10 @@ export class HeatingOverviewPage implements OnInit {
       this.heating_param_unten_unten
     ]);
   }
+
+  ionViewDidLeave() {
+    this.subsc1.unsubscribe();
+    this.subsc2.unsubscribe();
+  }
+
 }

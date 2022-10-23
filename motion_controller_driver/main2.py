@@ -58,8 +58,7 @@ class ProtocolHandler:
             for value_string in values_string.split(";"):
                 if value_string == "":
                     continue
-
-                print(values_string)
+                
                 values.append(self.__parse_value(value_string))
         else:
             #values.append(self.__parse_value(values_string))
