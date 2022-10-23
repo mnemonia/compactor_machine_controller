@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SensorService } from 'src/app/services/sensor/sensor.service';
 import { Param } from '../../model/domain';
 import { ParamService } from '../../services/param/param.service';
 
@@ -17,7 +18,12 @@ export class HeatingOverviewPage implements OnInit {
   cooling_param_unten_oben = new Param();
   cooling_param_unten_unten = new Param();
 
-  constructor(private paramService: ParamService) {}
+  heating_actual_oben_oben = new Param();
+  heating_actual_oben_unten = new Param();
+  heating_actual_unten_oben = new Param();
+  heating_actual_unten_unten = new Param();
+
+  constructor(private paramService: ParamService, private sensorService: SensorService) {}
 
   ngOnInit() {
     this.paramService.getParams().subscribe(
@@ -46,6 +52,23 @@ export class HeatingOverviewPage implements OnInit {
       (err) => console.warn(err),
       () => {}
     );
+
+    this.sensorService.getSensors().subscribe(
+      (params) => {
+        console.warn("Sensors", params);
+        params.forEach(p => {
+          console.log(p);
+          if (p.param_id === 15) {
+            this.heating_actual_oben_oben = p;
+          } else if (p.param_id === 16) {
+            this.heating_actual_oben_unten = p;
+          } else if (p.param_id === 17) {
+            this.heating_actual_unten_oben = p;
+          } else if (p.param_id === 18) {
+            this.heating_actual_unten_unten = p;
+          }        
+        });
+      });
   }
 
   onSubmit(event) {

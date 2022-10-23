@@ -5,6 +5,8 @@
 #include "Executable.h"
 #include "Configuration.h"
 #include "PIDController.h"
+#include "TemperatureSensor.h"
+
 
 class Heating: public Executable {
 public:
@@ -26,6 +28,7 @@ private:
   Configuration *_config;
   PIDController _pid_heat_up;
   PIDController _pid_cool_down;
+  TemperatureSensor _temperature_sensor;
   int _current_temperature_measurement_value_in_celsius;
   int _current_temperature_nominal_value_in_celsius;
   int _current_cooling_temperature_nominal_value_in_celsius;

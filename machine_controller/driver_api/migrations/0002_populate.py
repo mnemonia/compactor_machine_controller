@@ -41,6 +41,45 @@ PARAMS = [
     },
 
     {
+        "param_id": 15,
+        "index": 1,
+        "label": "Temperatur oben oben",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "ACTUAL",
+        "value": 22,
+    },
+    {
+        "param_id": 16,
+        "index": 1,
+        "label": "Temperatur oben unten",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "ACTUAL",
+        "value": 22,
+    },
+    {
+        "param_id": 17,
+        "index": 1,
+        "label": "Temperatur unten oben",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "ACTUAL",
+        "value": 22,
+    },
+    {
+        "param_id": 18,
+        "index": 1,
+        "label": "Temperatur unten unten",
+        "device_type": "SENSOR",
+        "component_type": "HEATING",
+        "param_type": "ACTUAL",
+        "value": 22,
+    },
+
+
+
+    {
         "param_id": 21,
         "index": 1,
         "label": "Kuehlung oben oben",

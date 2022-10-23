@@ -98,25 +98,35 @@ void RemoteControlService::trigger(int command_id){
 }
 
 void RemoteControlService::writeParamsToSerial() {
-  Serial.print("11=");
-  Serial.print(_config->get_heating_nominal_temperature_in_celsius(1));
-  Serial.print(";12=");
-  Serial.print(_config->get_heating_nominal_temperature_in_celsius(2));
-  Serial.print(";13=");
-  Serial.print(_config->get_heating_nominal_temperature_in_celsius(3));
-  Serial.print(";14=");
-  Serial.print(_config->get_heating_nominal_temperature_in_celsius(4));
+  Serial.print("15=");
+  Serial.print(_config->get_heating_actual_temperature_in_celsius(1));
+  Serial.print(";16=");
+  Serial.print(_config->get_heating_actual_temperature_in_celsius(2));
+  Serial.print(";17=");
+  Serial.print(_config->get_heating_actual_temperature_in_celsius(3));
+  Serial.print(";18=");
+  Serial.print(_config->get_heating_actual_temperature_in_celsius(4));
   Serial.print("\n");
 
-  Serial.print("21=");
-  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(1));
-  Serial.print(";22=");
-  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(2));
-  Serial.print(";23=");
-  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(3));
-  Serial.print(";24=");
-  Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(4));
-  Serial.print("\n");
+  // Serial.print("11=");
+  // Serial.print(_config->get_heating_nominal_temperature_in_celsius(1));
+  // Serial.print(";12=");
+  // Serial.print(_config->get_heating_nominal_temperature_in_celsius(2));
+  // Serial.print(";13=");
+  // Serial.print(_config->get_heating_nominal_temperature_in_celsius(3));
+  // Serial.print(";14=");
+  // Serial.print(_config->get_heating_nominal_temperature_in_celsius(4));
+  // Serial.print("\n");
+
+  // Serial.print("21=");
+  // Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(1));
+  // Serial.print(";22=");
+  // Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(2));
+  // Serial.print(";23=");
+  // Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(3));
+  // Serial.print(";24=");
+  // Serial.print(_config->get_heating_nominal_cooling_temperature_in_celsius(4));
+  // Serial.print("\n");
 
   // Serial.print("330=");
   // Serial.print(_config->get_compactor_endposition_open_status());

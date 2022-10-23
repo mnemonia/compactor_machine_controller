@@ -15,6 +15,10 @@ public:
 	int set_compactor_endposition_close_status(int value);
 	int get_compactor_endposition_open_status();
 	int set_compactor_endposition_open_status(int value);
+	int get_heating_actual_temperature_in_celsius(int heating_index);
+	int get_environment_actual_temperature_in_celsius(int heating_index);
+	void set_heating_actual_temperature_in_celsius(int heating_index, float value);
+	void set_environment_actual_temperature_in_celsius(int heating_index, float value);
 private:
 	int _stamp_duration_in_s;
 	int _heating_upper_upper_nominal_temperature_in_celsius;
@@ -28,5 +32,16 @@ private:
 	//bool _is_heating_with_master;
 	int _compactor_endposition_close_status;
 	int _compactor_endposition_open_status;
+
+	int _heating_upper_upper_actual_temperature_in_celsius;
+	int _heating_upper_lower_actual_temperature_in_celsius;
+	int _heating_lower_upper_actual_temperature_in_celsius;
+	int _heating_lower_lower_actual_temperature_in_celsius;
+
+	int _environment_upper_upper_actual_temperature_in_celsius;
+	int _environment_upper_lower_actual_temperature_in_celsius;
+	int _environment_lower_upper_actual_temperature_in_celsius;
+	int _environment_lower_lower_actual_temperature_in_celsius;
+
 };
 #endif

@@ -11,6 +11,7 @@ Heating::Heating(int heating_index, int pin_temperature_sensor, int pin_oil_valv
  _config(config),
  _pid_heat_up(),
  _pid_cool_down(),
+ _temperature_sensor(heating_index, config),
  _current_temperature_measurement_value_in_celsius(20),
  _current_temperature_nominal_value_in_celsius(20),
  _current_cooling_temperature_nominal_value_in_celsius(20),
@@ -42,8 +43,12 @@ void Heating::stop() {
 }
 
 void Heating::update(){
-  int current_temperature_measurement_value_in_raw = analogRead(_pin_temperature_sensor);
-  _current_temperature_measurement_value_in_celsius = _rawToCelsius(current_temperature_measurement_value_in_raw);
+  _temperature_sensor.update();
+  _current_temperature_measurement_value_in_celsius = _config->get_heating_actual_temperature_in_celsius(_heating_index);
+  // _config->get_environment_actual_temperature_in_celsius(_heating_index);
+
+  //int current_temperature_measurement_value_in_raw = analogRead(_pin_temperature_sensor);
+  //_current_temperature_measurement_value_in_celsius = _rawToCelsius(current_temperature_measurement_value_in_raw);
 
   int temperature_nominal_value_in_celsius = _config->get_heating_nominal_temperature_in_celsius(_heating_index);
   if (temperature_nominal_value_in_celsius != _current_temperature_nominal_value_in_celsius) {
